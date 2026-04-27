@@ -1,0 +1,96 @@
+========================================
+TASK 17.9 COMPLETED - NOTE 19
+========================================
+
+✓ TASK COMPLETED: Create calculer_note_19.py for Produits Constatés d'Avance
+
+DELIVERABLES:
+-------------
+
+1. Calculator Script
+   📄 py_backend/Doc calcul notes annexes/Scripts/calculer_note_19.py
+   - Implements CalculateurNote19 class
+   - Handles account 477 (Produits constatés d'avance)
+   - Calculates deferred income movements
+   - Generates HTML and trace outputs
+
+2. Test Script
+   📄 test-note-19.ps1
+   - PowerShell test script for quick validation
+   - Executes calculator and opens HTML output
+   - Verifies file creation
+
+3. Documentation
+   📄 py_backend/Doc calcul notes annexes/Tests/QUICK_START_NOTE_19.md
+   - Complete usage guide
+   - Account mapping details
+   - Calculation logic explanation
+   - Troubleshooting tips
+
+IMPLEMENTATION DETAILS:
+-----------------------
+
+Account Mapping:
+  - 477: Produits constatés d'avance (Deferred income)
+
+Calculation Logic (Liability Account):
+  - Opening Balance: Credit balance from N-1
+  - Increases: Credit movements (revenue received in advance)
+  - Decreases: Debit movements (revenue recognized)
+  - Closing Balance: Credit balance in N
+
+Key Features:
+  ✓ Follows calculateur_note_template structure
+  ✓ Implements coherence validation
+  ✓ Generates SYSCOHADA-compliant HTML
+  ✓ Creates detailed JSON trace
+  ✓ Handles missing accounts gracefully
+
+REQUIREMENTS VALIDATED:
+-----------------------
+✓ Requirement 5.1: Script structure conforms to template
+✓ Requirement 5.2: Mapping for account 477 defined
+✓ Requirement 5.3: Calculation logic implemented correctly
+✓ Requirement 5.4: HTML generation functional
+
+TESTING:
+--------
+
+To test the calculator:
+
+1. Quick Test (PowerShell):
+   ./test-note-19.ps1
+
+2. Direct Execution:
+   cd "py_backend/Doc calcul notes annexes/Scripts"
+   python calculer_note_19.py
+
+Expected Outputs:
+  - test_note_19.html (HTML visualization)
+  - trace_note_19.json (Calculation trace)
+
+NOTES:
+------
+
+Deferred Income Characteristics:
+  - Liability account (credit balance)
+  - Represents revenue received but not yet earned
+  - Increases when cash received in advance
+  - Decreases when revenue is recognized
+  - Single line item (no subtotals)
+
+Difference from Note 18 (Charges Constatées d'Avance):
+  - Note 18: Asset account (debit balance) - prepaid expenses
+  - Note 19: Liability account (credit balance) - deferred income
+  - Opposite treatment of increases/decreases
+
+NEXT STEPS:
+-----------
+
+Task 17.10: Create calculer_note_20.py for Écarts de Conversion Passif
+  - Account 478: Foreign exchange differences (liabilities)
+  - Similar structure to Note 19
+  - Liability account treatment
+
+STATUS: ✓ COMPLETE
+Date: April 26, 2026

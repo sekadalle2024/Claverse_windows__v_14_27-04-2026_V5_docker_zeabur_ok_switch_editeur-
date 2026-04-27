@@ -1,0 +1,180 @@
+================================================================================
+  TASK 18.3 COMPLETED - NOTE 23: AUTRES ACHATS
+================================================================================
+
+Date: 26 Avril 2026
+Statut: ✓ TERMINÉ
+
+================================================================================
+  RÉSUMÉ
+================================================================================
+
+Le calculateur de la Note 23 (Autres Achats) a été créé avec succès selon
+les spécifications du système SYSCOHADA Révisé.
+
+================================================================================
+  FICHIERS CRÉÉS
+================================================================================
+
+1. py_backend/Doc calcul notes annexes/Scripts/calculer_note_23.py
+   - Calculateur principal pour la Note 23
+   - Hérite de CalculateurNote (template)
+   - Implémente le calcul des autres achats
+
+2. test-note-23.ps1
+   - Script PowerShell de test rapide
+   - Vérifie Python et exécute le calculateur
+   - Affiche les résultats
+
+3. py_backend/Doc calcul notes annexes/Tests/QUICK_START_NOTE_23.md
+   - Guide de démarrage rapide
+   - Instructions d'utilisation
+   - Exemples de sortie
+
+================================================================================
+  MAPPING DES COMPTES SYSCOHADA
+================================================================================
+
+La Note 23 utilise les comptes suivants:
+
+Compte 604: Achats stockés - Matières et fournitures consommables
+  - 604, 6041, 6042, 6043, 6044, 6045, 6046, 6047, 6048, 6049
+
+Compte 605: Achats stockés - Emballages
+  - 605, 6051, 6052, 6053, 6054, 6055, 6056, 6057, 6058, 6059
+
+Compte 606: Achats non stockés de matières et fournitures
+  - 606, 6061, 6062, 6063, 6064, 6065, 6066, 6067, 6068, 6069
+
+Compte 607: Achats de marchandises
+  - 607, 6071, 6072, 6073, 6074, 6075, 6076, 6077, 6078, 6079
+
+Compte 608: Achats d'emballages
+  - 608, 6081, 6082, 6083, 6084, 6085, 6086, 6087, 6088, 6089
+
+Total: 50 comptes couverts
+
+================================================================================
+  STRUCTURE DE LA NOTE
+================================================================================
+
+La Note 23 présente:
+
+1. Autres achats - Exercice N
+   - Montant total des autres achats de l'exercice en cours
+   - Mouvements débiteurs (charges enregistrées)
+   - Mouvements créditeurs (reprises/annulations)
+
+2. Autres achats - Exercice N-1
+   - Montant total des autres achats de l'exercice précédent
+   - Mouvements débiteurs
+   - Mouvements créditeurs
+
+3. Variation N / N-1
+   - Différence en valeur absolue
+   - Variation en pourcentage
+
+================================================================================
+  FONCTIONNALITÉS IMPLÉMENTÉES
+================================================================================
+
+✓ Chargement des balances N, N-1, N-2 via Balance_Reader
+✓ Extraction des comptes 604, 605, 606, 607, 608 via Account_Extractor
+✓ Calcul des montants de charges pour N et N-1
+✓ Calcul de la variation entre exercices
+✓ Génération HTML conforme au format SYSCOHADA
+✓ Traçabilité complète via Trace_Manager
+✓ Gestion des erreurs et validation
+✓ Affichage console avec résumé détaillé
+
+================================================================================
+  TESTS
+================================================================================
+
+Test d'aide:
+  ✓ python calculer_note_23.py --help
+  ✓ Affiche les options disponibles
+  ✓ Arguments positionnels et optionnels documentés
+
+Test d'exécution:
+  Commande: .\test-note-23.ps1
+  Résultat attendu:
+    - Chargement des 3 balances
+    - Calcul des autres achats N et N-1
+    - Génération HTML
+    - Génération trace JSON
+    - Affichage du résumé
+
+================================================================================
+  CONFORMITÉ AUX REQUIREMENTS
+================================================================================
+
+Requirement 5.1: ✓ Script créé avec structure conforme
+Requirement 5.2: ✓ Classe CalculateurNote23 avec méthodes requises
+Requirement 5.3: ✓ Mapping des comptes défini dans dictionnaire
+Requirement 5.4: ✓ Suit la structure du modèle calculer_note_template.py
+
+================================================================================
+  UTILISATION
+================================================================================
+
+Exécution simple:
+  python "py_backend/Doc calcul notes annexes/Scripts/calculer_note_23.py"
+
+Avec paramètres:
+  python calculer_note_23.py "chemin/balance.xlsx" \
+    --output-html "sortie.html" \
+    --output-trace "trace.json"
+
+Via PowerShell:
+  .\test-note-23.ps1
+
+================================================================================
+  FICHIERS GÉNÉRÉS
+================================================================================
+
+Après exécution:
+
+1. test_note_23.html
+   - Tableau HTML formaté
+   - Conforme au format SYSCOHADA officiel
+   - Styles CSS intégrés
+
+2. note_23_trace.json
+   - Traçabilité complète des calculs
+   - Comptes sources avec soldes
+   - Métadonnées (date, fichier, hash MD5)
+
+================================================================================
+  INTÉGRATION
+================================================================================
+
+Cette note s'intègre dans:
+
+1. Système de calcul des 33 notes annexes
+2. Orchestrateur principal (calcul_notes_annexes_main.py)
+3. Validation de cohérence inter-notes
+4. Export Excel de la liasse complète
+
+================================================================================
+  PROCHAINES ÉTAPES
+================================================================================
+
+Task 18.4: Create calculer_note_24.py for Services Extérieurs
+Task 18.5: Create calculer_note_25.py for Charges de Personnel
+Task 18.6: Create calculer_note_26.py for Dotations aux Amortissements
+Task 18.7: Create calculer_note_27.py for Dotations aux Provisions
+
+================================================================================
+  DOCUMENTATION
+================================================================================
+
+Voir:
+- QUICK_START_NOTE_23.md: Guide de démarrage rapide
+- requirements.md: Spécifications détaillées
+- design.md: Architecture du système
+- calculateur_note_template.py: Documentation de la classe de base
+
+================================================================================
+  ✓ TASK 18.3 COMPLETED SUCCESSFULLY
+================================================================================

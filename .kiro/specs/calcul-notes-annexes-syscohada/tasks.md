@@ -260,87 +260,87 @@ This implementation plan creates a modular Python system to automate the calcula
     - Implement calculation for reserves
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 15.7 Create calculer_note_10.py for Résultat
+  - [x] 15.7 Create calculer_note_10.py for Résultat
     - Define mapping for accounts 12X, 13X
     - Implement calculation for retained earnings
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-- [ ] 16. Checkpoint - Ensure asset and liability notes work correctly
+- [x] 16. Checkpoint - Ensure asset and liability notes work correctly
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 17. Create calculators for Notes 11-20 (Provisions and Debts)
-  - [ ] 17.1 Create calculer_note_11.py for Provisions
+- [-] 17. Create calculators for Notes 11-20 (Provisions and Debts)
+  - [x] 17.1 Create calculer_note_11.py for Provisions
     - Define mapping for accounts 19X
     - Implement calculation for provisions movements
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 17.2 Create calculer_note_12.py for Emprunts
+  - [x] 17.2 Create calculer_note_12.py for Emprunts
     - Define mapping for accounts 16X
     - Implement calculation for loans and borrowings
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 17.3 Create calculer_note_13.py for Dettes Fournisseurs
+  - [x] 17.3 Create calculer_note_13.py for Dettes Fournisseurs
     - Define mapping for accounts 40X
     - Implement calculation for supplier payables
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 17.4 Create calculer_note_14.py for Dettes Fiscales
+  - [x] 17.4 Create calculer_note_14.py for Dettes Fiscales
     - Define mapping for accounts 44X
     - Implement calculation for tax liabilities
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 17.5 Create calculer_note_15.py for Dettes Sociales
+  - [x] 17.5 Create calculer_note_15.py for Dettes Sociales
     - Define mapping for accounts 42X, 43X
     - Implement calculation for social security liabilities
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 17.6 Create calculer_note_16.py for Autres Dettes
+  - [x] 17.6 Create calculer_note_16.py for Autres Dettes
     - Define mapping for accounts 46X, 47X
     - Implement calculation for other liabilities
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 17.7 Create calculer_note_17.py for Trésorerie Passif
+  - [x] 17.7 Create calculer_note_17.py for Trésorerie Passif
     - Define mapping for accounts 52X, 56X
     - Implement calculation for bank overdrafts
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 17.8 Create calculer_note_18.py for Charges Constatées d'Avance
+  - [x] 17.8 Create calculer_note_18.py for Charges Constatées d'Avance
     - Define mapping for accounts 476
     - Implement calculation for prepaid expenses
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 17.9 Create calculer_note_19.py for Produits Constatés d'Avance
+  - [x] 17.9 Create calculer_note_19.py for Produits Constatés d'Avance
     - Define mapping for accounts 477
     - Implement calculation for deferred income
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 17.10 Create calculer_note_20.py for Écarts de Conversion Passif
+  - [x] 17.10 Create calculer_note_20.py for Écarts de Conversion Passif
     - Define mapping for accounts 478
     - Implement calculation for foreign exchange differences (liabilities)
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
 - [ ] 18. Create calculators for Notes 21-27 (Income Statement - Charges)
-  - [ ] 18.1 Create calculer_note_21.py for Achats de Marchandises
+  - [x] 18.1 Create calculer_note_21.py for Achats de Marchandises
     - Define mapping for accounts 60X
     - Implement calculation for purchases of goods
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 18.2 Create calculer_note_22.py for Achats de Matières
+  - [x] 18.2 Create calculer_note_22.py for Achats de Matières
     - Define mapping for accounts 601, 602
     - Implement calculation for raw materials purchases
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 18.3 Create calculer_note_23.py for Autres Achats
+  - [x] 18.3 Create calculer_note_23.py for Autres Achats
     - Define mapping for accounts 604, 605, 606, 607, 608
     - Implement calculation for other purchases
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 18.4 Create calculer_note_24.py for Services Extérieurs
+  - [x] 18.4 Create calculer_note_24.py for Services Extérieurs
     - Define mapping for accounts 61X, 62X
     - Implement calculation for external services
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 18.5 Create calculer_note_25.py for Charges de Personnel
+  - [x] 18.5 Create calculer_note_25.py for Charges de Personnel
     - Define mapping for accounts 66X
     - Implement calculation for personnel expenses
     - _Requirements: 5.1, 5.2, 5.3, 5.4_

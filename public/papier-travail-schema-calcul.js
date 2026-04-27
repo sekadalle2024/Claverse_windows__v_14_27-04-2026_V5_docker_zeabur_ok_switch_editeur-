@@ -618,14 +618,15 @@
       // Ligne unique avec les colonnes
       const row = document.createElement("tr");
 
-      // Ajouter les colonnes vides AVANT les variables
-      for (let i = 0; i < emptyColumnsCount; i++) {
+      // Ajouter les colonnes vides AVANT les variables (fusionnées)
+      if (emptyColumnsCount > 0) {
         const td = document.createElement("td");
         td.className = "px-4 py-3 border border-gray-200 dark:border-gray-700";
         td.style.cssText = `
           background: #fffbf0;
           min-width: 80px;
         `;
+        td.colSpan = emptyColumnsCount;
         td.textContent = "";
         row.appendChild(td);
       }
@@ -634,28 +635,36 @@
       modele.colonnes.forEach((colonne, index) => {
         const td = document.createElement("td");
         td.className = "px-4 py-3 text-sm text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700";
+        
+        // Largeur augmentée de 60% pour les formules avec "=" (80px * 1.6 = 128px)
+        const isFormula = colonne.includes("=");
+        const minWidth = isFormula ? "130px" : "80px";
+        const whiteSpace = isFormula ? "nowrap" : "normal";
+
         td.style.cssText = `
           background: #fff9e6;
           font-weight: 500;
           text-align: center;
-          min-width: 80px;
+          min-width: ${minWidth};
+          white-space: ${whiteSpace};
         `;
         td.textContent = colonne;
         td.contentEditable = "true";
         row.appendChild(td);
       });
 
-      // Compléter avec des colonnes vides APRÈS les variables si nécessaire
+      // Compléter avec des colonnes vides APRÈS les variables si nécessaire (fusionnées)
       const remainingColumns = totalColumns - emptyColumnsCount - modele.colonnes.length;
       debug.log(`📐 [Build] Colonnes vides après: ${remainingColumns}`);
       
-      for (let i = 0; i < remainingColumns; i++) {
+      if (remainingColumns > 0) {
         const td = document.createElement("td");
         td.className = "px-4 py-3 border border-gray-200 dark:border-gray-700";
         td.style.cssText = `
           background: #fffbf0;
           min-width: 80px;
         `;
+        td.colSpan = remainingColumns;
         td.textContent = "";
         row.appendChild(td);
       }

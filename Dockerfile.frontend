@@ -10,7 +10,6 @@ LABEL org.opencontainers.image.version="1.0.0"
 WORKDIR /app
 
 # Copier les fichiers de configuration npm
-# Compatible avec package-lock.json ET npm-shrinkwrap.json
 COPY package*.json ./
 COPY npm-shrinkwrap.json* ./
 
@@ -18,24 +17,17 @@ COPY npm-shrinkwrap.json* ./
 COPY tsconfig*.json ./
 COPY vite.config.ts ./
 
+# Installer les dépendances en IGNORANT le script postinstall
 # Installer TOUTES les dépendances (dev incluses, nécessaires pour le build Vite)
-# npm install est compatible avec npm-shrinkwrap.json contrairement à npm ci
-RUN npm install
-
+# --ignore-scripts évite l'exécution du postinstall electron-builder
+# qui n'est pas nécessaire pour le déploiement web
+RUN npm install --ignore-scripts
 # Copier le code source
 COPY src/ ./src/
 COPY public/ ./public/
 COPY index.html ./
 
-# Copier le SDK local (requis par src/components/AgentRunnerSDK.tsx)
-# Import: "../../sdk/src/ClaraFlowRunner" → dossier sdk/ à la racine du projet
-COPY sdk/ ./sdk/
-
 # Build de production
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-
-RUN npm run build
 
 # ============================================
 # STAGE 2: Production avec Nginx

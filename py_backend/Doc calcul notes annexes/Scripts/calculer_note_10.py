@@ -9,7 +9,7 @@ Ce script calcule la Note 10 à partir des balances N, N-1, N-2 en utilisant
 l'architecture modulaire du système de calcul automatique des notes annexes.
 
 Auteur: Système de calcul automatique des notes annexes SYSCOHADA
-Date: 25 Avril 2026
+Date: 26 Avril 2026
 """
 
 import sys
@@ -31,19 +31,19 @@ class CalculateurNote10(CalculateurNote):
     Cette classe hérite de CalculateurNote et implémente le calcul spécifique
     de la Note 10 avec les mouvements du résultat:
     - Résultat en instance d'affectation
+    - Résultat de l'exercice
     - Résultat net de l'exercice
+    - Résultat des exercices antérieurs
     
     Mapping des comptes SYSCOHADA:
-    - Comptes de résultat: 12X, 13X
-      * 12: Report à nouveau et résultat
-        - 121: Report à nouveau créditeur (bénéficiaire)
-        - 129: Report à nouveau débiteur (déficitaire)
+    - Comptes de résultat: 12X et 13X
+      * 12: Report à nouveau
+        - 121: Report à nouveau créditeur (bénéfice)
+        - 129: Report à nouveau débiteur (perte)
       * 13: Résultat net de l'exercice
         - 130: Résultat en instance d'affectation
-          - 1301: Résultat en instance d'affectation: bénéfice
-          - 1309: Résultat en instance d'affectation: perte
-        - 131: Résultat net: bénéfice
-        - 139: Résultat net: perte
+        - 131: Résultat net: Bénéfice
+        - 139: Résultat net: Perte
     
     Note: Le résultat représente le bénéfice ou la perte de l'exercice.
     Cette note suit les mouvements du résultat (affectation, distribution)
@@ -62,35 +62,31 @@ class CalculateurNote10(CalculateurNote):
         
         # Mapping des comptes pour chaque ligne de la Note 10
         self.mapping_comptes = {
-            'Report à nouveau créditeur': {
-                'brut': ['121'],
+            'Résultat en instance d\'affectation': {
+                'brut': ['130'],
                 'amort': None  # Pas d'amortissements pour le résultat
             },
-            'Report à nouveau débiteur': {
-                'brut': ['129'],
-                'amort': None
-            },
-            'Résultat en instance d\'affectation - Bénéfice': {
-                'brut': ['1301'],
-                'amort': None
-            },
-            'Résultat en instance d\'affectation - Perte': {
-                'brut': ['1309'],
-                'amort': None
-            },
-            'Résultat net de l\'exercice - Bénéfice': {
+            'Résultat net: Bénéfice': {
                 'brut': ['131'],
                 'amort': None
             },
-            'Résultat net de l\'exercice - Perte': {
+            'Résultat net: Perte': {
                 'brut': ['139'],
+                'amort': None
+            },
+            'Report à nouveau créditeur': {
+                'brut': ['121'],
+                'amort': None
+            },
+            'Report à nouveau débiteur': {
+                'brut': ['129'],
                 'amort': None
             }
         }
     
     def generer_note(self) -> pd.DataFrame:
         """
-        Génère la Note 10 complète avec les 6 lignes et le total.
+        Génère la Note 10 complète avec les 5 lignes et le total.
         
         Cette méthode:
         1. Calcule chaque ligne de résultat
@@ -98,7 +94,7 @@ class CalculateurNote10(CalculateurNote):
         3. Retourne un DataFrame avec toutes les lignes
         
         Returns:
-            DataFrame contenant les 7 lignes (6 lignes + total)
+            DataFrame contenant les 6 lignes (5 lignes + total)
         """
         lignes = []
         

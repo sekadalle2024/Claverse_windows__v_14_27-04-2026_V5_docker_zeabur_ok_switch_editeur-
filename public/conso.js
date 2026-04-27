@@ -275,7 +275,8 @@
     }
 
     isModelizedTable(headers) {
-      const requiredColumns = ["conclusion", "assertion", "ctr"];
+      // Les tables sont modelisées si elles contiennent l'une de ces colonnes
+      const requiredColumns = ["conclusion", "assertion", "ctr", "resultat"];
       return requiredColumns.some((col) =>
         headers.some((header) => this.matchesColumn(header.text, col)),
       );

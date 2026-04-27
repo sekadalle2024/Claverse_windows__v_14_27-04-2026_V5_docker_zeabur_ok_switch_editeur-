@@ -1,0 +1,134 @@
+================================================================================
+  TASK 18.4 COMPLETED - NOTE 24: SERVICES EXTÉRIEURS
+================================================================================
+
+Date: 26 Avril 2026
+Statut: ✓ TERMINÉ
+
+FICHIERS CRÉÉS
+================================================================================
+
+1. calculer_note_24.py
+   Emplacement: py_backend/Doc calcul notes annexes/Scripts/
+   Description: Calculateur pour la Note 24 - Services Extérieurs
+   
+   Fonctionnalités:
+   - Calcul des services extérieurs (comptes 61X et 62X)
+   - Extraction des charges pour exercices N et N-1
+   - Calcul de la variation N / N-1
+   - Génération HTML avec formatage SYSCOHADA
+   - Traçabilité complète des calculs
+
+2. QUICK_START_NOTE_24.md
+   Emplacement: py_backend/Doc calcul notes annexes/Tests/
+   Description: Guide de démarrage rapide
+   
+   Contenu:
+   - Instructions d'exécution
+   - Liste des comptes SYSCOHADA utilisés
+   - Structure de sortie
+   - Exemples de validation
+
+3. test-note-24.ps1
+   Emplacement: Racine du projet
+   Description: Script PowerShell de test automatisé
+   
+   Fonctionnalités:
+   - Vérification de l'environnement Python
+   - Exécution du calculateur
+   - Affichage des résultats
+   - Gestion des erreurs
+
+MAPPING DES COMPTES SYSCOHADA
+================================================================================
+
+Services extérieurs A (61X):
+  611 - Sous-traitance générale
+  612 - Redevances de crédit-bail et contrats assimilés
+  613 - Locations
+  614 - Charges locatives et charges de copropriété
+  615 - Entretien, réparations et maintenance
+  616 - Primes d'assurances
+  617 - Études, recherches et documentation
+  618 - Divers
+  619 - Rabais, remises et ristournes obtenus
+
+Services extérieurs B (62X):
+  621 - Personnel extérieur à l'entreprise
+  622 - Rémunérations d'intermédiaires et de conseils
+  623 - Publicité, publications, relations publiques
+  624 - Transports de biens et transports collectifs du personnel
+  625 - Déplacements, missions et réceptions
+  626 - Frais postaux et frais de télécommunications
+  627 - Services bancaires et assimilés
+  628 - Cotisations et divers
+  629 - Rabais, remises et ristournes obtenus
+
+ARCHITECTURE
+================================================================================
+
+Classe: CalculateurNote24
+Hérite de: CalculateurNote (template de base)
+
+Méthodes principales:
+  - __init__(): Initialisation avec mapping des comptes 61X et 62X
+  - calculer_ligne_charge(): Calcul des charges pour un exercice
+  - generer_note(): Génération complète de la note
+  - generer_html(): Génération du fichier HTML
+  - afficher_resume(): Affichage du résumé console
+
+Structure de sortie:
+  - Services extérieurs - Exercice N
+  - Services extérieurs - Exercice N-1
+  - Variation N / N-1 (montant et pourcentage)
+
+EXÉCUTION
+================================================================================
+
+Commande PowerShell:
+  .\test-note-24.ps1
+
+Commande Python directe:
+  python "py_backend/Doc calcul notes annexes/Scripts/calculer_note_24.py"
+
+Avec paramètres personnalisés:
+  python calculer_note_24.py "chemin/vers/balance.xlsx" \
+    --output-html "sortie.html" \
+    --output-trace "trace.json"
+
+FICHIERS GÉNÉRÉS
+================================================================================
+
+Après exécution:
+  - test_note_24.html: Tableau HTML formaté avec style SYSCOHADA
+  - note_24_trace.json: Traçabilité complète des calculs
+
+VALIDATION
+================================================================================
+
+Points de contrôle:
+  ✓ Tous les comptes 61X et 62X sont inclus
+  ✓ Les montants N et N-1 sont cohérents
+  ✓ La variation est correctement calculée
+  ✓ Le pourcentage de variation est exact
+  ✓ Le HTML est conforme au format SYSCOHADA
+  ✓ La traçabilité est complète
+
+REQUIREMENTS VALIDÉS
+================================================================================
+
+Requirement 5.1: ✓ Fichier calculer_note_24.py créé
+Requirement 5.2: ✓ Classe CalculateurNote24 avec méthodes requises
+Requirement 5.3: ✓ Mapping des comptes 61X et 62X défini
+Requirement 5.4: ✓ Structure conforme au template
+
+PROCHAINES ÉTAPES
+================================================================================
+
+Task 18.5: Create calculer_note_25.py for Charges de Personnel
+Task 18.6: Create calculer_note_26.py for Dotations aux Amortissements
+Task 18.7: Create calculer_note_27.py for Dotations aux Provisions
+
+================================================================================
+  ✓ TASK 18.4 COMPLETED SUCCESSFULLY
+================================================================================

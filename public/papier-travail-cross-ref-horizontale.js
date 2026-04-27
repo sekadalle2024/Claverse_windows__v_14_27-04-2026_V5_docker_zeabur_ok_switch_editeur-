@@ -570,14 +570,15 @@
       // Ligne unique avec les colonnes
       const row = document.createElement("tr");
 
-      // Ajouter les colonnes vides AVANT les références
-      for (let i = 0; i < emptyColumnsCount; i++) {
+      // Ajouter les colonnes vides AVANT les références (fusionnées)
+      if (emptyColumnsCount > 0) {
         const td = document.createElement("td");
         td.className = "px-4 py-3 border border-gray-200 dark:border-gray-700";
         td.style.cssText = `
           background: #f0f9ff;
           min-width: 80px;
         `;
+        td.colSpan = emptyColumnsCount;
         td.textContent = "";
         row.appendChild(td);
       }
@@ -598,17 +599,18 @@
         row.appendChild(td);
       }
 
-      // Compléter avec des colonnes vides APRÈS les références si nécessaire
+      // Compléter avec des colonnes vides APRÈS les références si nécessaire (fusionnées)
       const remainingColumns = totalColumns - emptyColumnsCount - modele.nbColonnes;
       debug.log(`📎 [Build] Colonnes vides après: ${remainingColumns}`);
       
-      for (let i = 0; i < remainingColumns; i++) {
+      if (remainingColumns > 0) {
         const td = document.createElement("td");
         td.className = "px-4 py-3 border border-gray-200 dark:border-gray-700";
         td.style.cssText = `
           background: #f0f9ff;
           min-width: 80px;
         `;
+        td.colSpan = remainingColumns;
         td.textContent = "";
         row.appendChild(td);
       }

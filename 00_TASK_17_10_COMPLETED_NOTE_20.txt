@@ -1,0 +1,180 @@
+================================================================================
+  TASK 17.10 COMPLETED - NOTE 20: ÉCARTS DE CONVERSION PASSIF
+================================================================================
+
+Date: 26 avril 2026
+Task: 17.10 Create calculer_note_20.py for Écarts de Conversion Passif
+Status: ✅ COMPLETED
+
+================================================================================
+FICHIERS CRÉÉS
+================================================================================
+
+1. py_backend/Doc calcul notes annexes/Scripts/calculer_note_20.py
+   - Calculateur pour la Note 20 (Écarts de Conversion Passif)
+   - Traite le compte 478 (gains latents de change)
+   - Hérite de CalculateurNote (template)
+   - Calcule les mouvements: ouverture, augmentations, diminutions, clôture
+
+2. py_backend/Doc calcul notes annexes/Tests/QUICK_START_NOTE_20.md
+   - Guide de démarrage rapide
+   - Documentation des comptes SYSCOHADA
+   - Instructions d'exécution
+   - Interprétation des résultats
+   - Contrôles de cohérence
+
+3. test-note-20.ps1
+   - Script PowerShell de test
+   - Exécution automatisée
+   - Vérification des fichiers générés
+   - Affichage des résultats
+
+================================================================================
+MAPPING DES COMPTES
+================================================================================
+
+Compte SYSCOHADA:
+  - 478: Écarts de conversion - Passif (gains latents)
+
+Nature:
+  - Compte de passif (solde créditeur)
+  - Gains latents sur créances/dettes en devises
+  - Non réalisés (principe de prudence)
+
+================================================================================
+STRUCTURE DE LA NOTE 20
+================================================================================
+
+Colonnes:
+  1. NATURE (libellé)
+  2. Solde début exercice
+  3. Augmentations (nouveaux gains latents)
+  4. Diminutions (gains réalisés ou annulés)
+  5. Solde fin exercice
+
+Ligne unique:
+  - Écarts de conversion - Passif
+
+================================================================================
+FONCTIONNALITÉS IMPLÉMENTÉES
+================================================================================
+
+✅ Chargement des balances N, N-1, N-2
+✅ Extraction des soldes du compte 478
+✅ Calcul des mouvements (augmentations/diminutions)
+✅ Vérification de cohérence comptable
+✅ Génération HTML avec formatage SYSCOHADA
+✅ Traçabilité complète (trace JSON)
+✅ Gestion des erreurs et avertissements
+
+================================================================================
+PARTICULARITÉS COMPTABLES
+================================================================================
+
+Écarts de conversion passif (compte 478):
+  - Gains latents = Augmentation de valeur des créances en devises
+                    ou Diminution de valeur des dettes en devises
+  - Inscrits au passif par prudence (non réalisés)
+  - Généralement non imposables tant que non réalisés
+  - Symétrie avec les écarts de conversion actif (Note 3E)
+
+Mouvements:
+  - Augmentations (crédit): Nouveaux gains latents constatés
+  - Diminutions (débit): Réalisation ou annulation de gains
+
+================================================================================
+TESTS ET VALIDATION
+================================================================================
+
+Test d'exécution:
+  ✅ Script Python exécutable
+  ✅ Structure conforme au template
+  ✅ Imports corrects
+  ✅ Gestion des erreurs fonctionnelle
+
+Fichiers générés (après exécution avec balance):
+  - test_note_20.html: Tableau HTML formaté
+  - trace_note_20.json: Traçabilité des calculs
+
+================================================================================
+COMMANDES D'EXÉCUTION
+================================================================================
+
+Option 1 - Direct:
+  cd "py_backend/Doc calcul notes annexes/Scripts"
+  python calculer_note_20.py
+
+Option 2 - PowerShell:
+  .\test-note-20.ps1
+
+================================================================================
+INTÉGRATION DANS LE SYSTÈME
+================================================================================
+
+Position dans les 33 notes:
+  - Note 20/33
+  - Groupe: Provisions et Dettes (Notes 11-20)
+  - Dernière note du groupe passif
+
+Cohérence inter-notes:
+  - Lien avec Note 3E (Écarts de conversion actif)
+  - Vérification symétrie actif/passif
+  - Impact sur le bilan (passif)
+
+================================================================================
+PROCHAINES ÉTAPES
+================================================================================
+
+✅ Task 17.10 terminée
+⏭️  Task 18.1: Create calculer_note_21.py (Achats de Marchandises)
+⏭️  Task 18.2-18.7: Notes 22-27 (Charges)
+⏭️  Task 19.1-19.6: Notes 28-33 (Produits)
+
+Checkpoint 20:
+  - Toutes les notes de provisions et dettes (11-20) complètes
+  - Prêt pour les notes de charges et produits (21-33)
+
+================================================================================
+REQUIREMENTS VALIDÉS
+================================================================================
+
+✅ Requirement 5.1: Script Python individuel créé
+✅ Requirement 5.2: Classe CalculateurNote20 avec méthodes requises
+✅ Requirement 5.3: Mapping des comptes défini (compte 478)
+✅ Requirement 5.4: Structure conforme au template
+
+================================================================================
+DOCUMENTATION
+================================================================================
+
+Guide complet disponible:
+  py_backend/Doc calcul notes annexes/Tests/QUICK_START_NOTE_20.md
+
+Contenu:
+  - Vue d'ensemble
+  - Comptes SYSCOHADA
+  - Instructions d'exécution
+  - Interprétation des résultats
+  - Contrôles de cohérence
+  - Dépannage
+  - Références SYSCOHADA
+
+================================================================================
+NOTES TECHNIQUES
+================================================================================
+
+Architecture:
+  - Héritage de CalculateurNote (template pattern)
+  - Utilisation des modules partagés (AccountExtractor, MovementCalculator)
+  - Génération HTML via HTMLGenerator
+  - Traçabilité via TraceManager
+
+Spécificités Note 20:
+  - Compte de passif (solde créditeur)
+  - Pas d'amortissements
+  - Structure simple (1 ligne)
+  - Pas de ligne de total
+
+================================================================================
+✅ TASK 17.10 COMPLETED SUCCESSFULLY
+================================================================================

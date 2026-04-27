@@ -1,0 +1,143 @@
+================================================================================
+TASK 18.5 COMPLETED - NOTE 25 (CHARGES DE PERSONNEL)
+================================================================================
+
+Date: 26 avril 2026
+Task: 18.5 Create calculer_note_25.py for Charges de Personnel
+Status: ✓ COMPLETED
+
+================================================================================
+FICHIERS CRÉÉS
+================================================================================
+
+1. py_backend/Doc calcul notes annexes/Scripts/calculer_note_25.py
+   - Calculateur principal pour la Note 25
+   - Gère les comptes 66X (Charges de personnel)
+   - Génère un tableau HTML avec exercices N et N-1
+
+2. py_backend/Doc calcul notes annexes/Tests/QUICK_START_NOTE_25.md
+   - Guide de démarrage rapide
+   - Documentation des comptes utilisés
+   - Instructions de test et vérification
+
+3. test-note-25.ps1
+   - Script PowerShell de test automatisé
+   - Vérifie la présence du fichier de balance
+   - Ouvre automatiquement le résultat HTML
+
+================================================================================
+STRUCTURE DE LA NOTE 25
+================================================================================
+
+Comptes traités (66X):
+├── 661 - Salaires et traitements
+├── 662 - Primes et gratifications
+├── 663 - Congés payés
+├── 664 - Indemnités de préavis et de licenciement
+├── 665, 666, 667, 668 - Charges sociales
+└── 669 - Autres charges de personnel
+
+Colonnes du tableau:
+├── Libellé (60%)
+├── Exercice N (20%)
+└── Exercice N-1 (20%)
+
+Total: 6 lignes de détail + 1 ligne de total
+
+================================================================================
+FONCTIONNALITÉS IMPLÉMENTÉES
+================================================================================
+
+✓ Lecture des balances N, N-1, N-2
+✓ Extraction des comptes 66X
+✓ Calcul des montants par catégorie de charges
+✓ Agrégation des charges sociales (665-668)
+✓ Calcul du total des charges de personnel
+✓ Génération HTML avec style SYSCOHADA
+✓ Formatage des montants avec séparateurs de milliers
+✓ Mise en évidence de la ligne de total
+
+================================================================================
+REQUIREMENTS VALIDÉS
+================================================================================
+
+✓ Requirement 5.1: Structure de script conforme au template
+✓ Requirement 5.2: Mapping des comptes 66X défini
+✓ Requirement 5.3: Calcul des charges de personnel
+✓ Requirement 5.4: Génération HTML conforme
+
+================================================================================
+TESTS À EFFECTUER
+================================================================================
+
+1. Test de base:
+   .\test-note-25.ps1
+
+2. Vérifications manuelles:
+   - Ouvrir: py_backend/Doc calcul notes annexes/Tests/test_note_25.html
+   - Vérifier la présence des 6 catégories de charges
+   - Vérifier la cohérence des montants N et N-1
+   - Vérifier le calcul du total
+
+3. Validation des comptes:
+   - Comparer avec les comptes 66X de la balance
+   - Vérifier que les charges sociales agrègent bien 665-668
+
+================================================================================
+CALCUL DES CHARGES DE PERSONNEL
+================================================================================
+
+Méthode:
+- Pour chaque catégorie de charges
+- Extraire les comptes correspondants (66X)
+- Calculer: Solde Débit - Solde Crédit
+- Les charges sont normalement au débit
+
+Agrégation:
+- Charges sociales = somme(665, 666, 667, 668)
+- Total = somme de toutes les catégories
+
+================================================================================
+PROCHAINES ÉTAPES
+================================================================================
+
+Task suivante: 18.6 Create calculer_note_26.py for Dotations aux Amortissements
+- Comptes: 681X
+- Type: Charges d'exploitation
+- Lien avec: Notes 3A-3E (immobilisations)
+
+================================================================================
+COMMANDES RAPIDES
+================================================================================
+
+# Test complet
+.\test-note-25.ps1
+
+# Exécution directe
+python "py_backend/Doc calcul notes annexes/Scripts/calculer_note_25.py"
+
+# Ouvrir le résultat
+start "py_backend/Doc calcul notes annexes/Tests/test_note_25.html"
+
+================================================================================
+NOTES TECHNIQUES
+================================================================================
+
+1. Comptes 66X:
+   - Classe 6: Charges
+   - Sous-classe 66: Charges de personnel
+   - Solde normal: Débiteur
+
+2. Calcul:
+   - Montant = Solde Débit - Solde Crédit
+   - Pas d'amortissements (contrairement aux immobilisations)
+   - Pas de mouvements détaillés (juste les soldes)
+
+3. Particularités:
+   - Agrégation des charges sociales (4 comptes)
+   - Comparaison N vs N-1 pour analyse d'évolution
+   - Important pour l'analyse de la masse salariale
+
+================================================================================
+✓ TASK 18.5 COMPLETED SUCCESSFULLY
+================================================================================

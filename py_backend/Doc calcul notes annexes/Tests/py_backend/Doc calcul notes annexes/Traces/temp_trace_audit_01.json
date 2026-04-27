@@ -1,7 +1,7 @@
 {
   "note": "01",
   "titre": "",
-  "date_generation": "2026-04-24T10:53:43.687470",
+  "date_generation": "2026-04-26T12:30:31.974241",
   "fichier_balance": "P000 - N_N-1_N-2.xlsx",
   "hash_md5_balance": "9713c443d17c0ae8df3fbca9b1e90429",
   "lignes": [
@@ -20,7 +20,7 @@
           "solde_credit": 0.0
         }
       ],
-      "timestamp": "2026-04-24T10:53:43.687497"
+      "timestamp": "2026-04-26T12:30:31.974253"
     }
   ],
   "total": {}

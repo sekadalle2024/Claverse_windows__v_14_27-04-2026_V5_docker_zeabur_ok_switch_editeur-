@@ -1,0 +1,237 @@
+================================================================================
+  TASK 18.1 COMPLETED - NOTE 21: ACHATS DE MARCHANDISES
+================================================================================
+
+Date: 26 Avril 2026
+Status: ✓ COMPLETED
+
+================================================================================
+  RÉSUMÉ
+================================================================================
+
+La Note 21 "Achats de Marchandises" a été créée avec succès. Cette note fait
+partie des notes de charges du compte de résultat (Notes 18-27).
+
+================================================================================
+  FICHIERS CRÉÉS
+================================================================================
+
+1. calculer_note_21.py
+   - Calculateur principal pour la Note 21
+   - Hérite de CalculateurNote
+   - Implémente le calcul des achats de marchandises
+
+2. QUICK_START_NOTE_21.md
+   - Guide de démarrage rapide
+   - Instructions d'utilisation
+   - Exemples de sortie
+
+3. test-note-21.ps1
+   - Script PowerShell de test automatisé
+   - Vérification des prérequis
+   - Exécution et validation
+
+================================================================================
+  MAPPING DES COMPTES SYSCOHADA
+================================================================================
+
+Comptes utilisés:
+- 601: Achats de marchandises
+- 6011-6019: Sous-comptes d'achats de marchandises
+
+Type: Comptes de charges (classe 6)
+- Solde débiteur = charges de l'exercice
+- Mouvements débiteurs = charges enregistrées
+- Mouvements créditeurs = reprises/annulations
+
+================================================================================
+  STRUCTURE DE LA NOTE
+================================================================================
+
+La Note 21 présente:
+
+1. Achats de marchandises - Exercice N
+   - Montant total des achats
+   - Mouvements débiteurs
+   - Mouvements créditeurs
+
+2. Achats de marchandises - Exercice N-1
+   - Montant total des achats
+   - Mouvements débiteurs
+   - Mouvements créditeurs
+
+3. Variation N / N-1
+   - Montant de la variation
+   - Pourcentage de variation
+
+================================================================================
+  DIFFÉRENCES AVEC LES NOTES D'IMMOBILISATIONS
+================================================================================
+
+Contrairement aux notes d'immobilisations (3A-3E), la Note 21:
+
+1. Ne comporte PAS de colonnes d'amortissement
+   - Pas de dotations
+   - Pas de reprises d'amortissement
+   - Pas de VNC
+
+2. Structure simplifiée
+   - Uniquement les montants de charges
+   - Comparaison N vs N-1
+   - Calcul de variation
+
+3. Logique de calcul différente
+   - Utilise calculer_ligne_charge() au lieu de calculer_ligne_note()
+   - Pas de calcul de VNC
+   - Focus sur les mouvements de l'exercice
+
+================================================================================
+  FONCTIONNALITÉS IMPLÉMENTÉES
+================================================================================
+
+✓ Chargement des balances N, N-1, N-2
+✓ Extraction des comptes 60X
+✓ Calcul des montants de charges pour N et N-1
+✓ Calcul de la variation (montant et %)
+✓ Génération HTML avec structure adaptée aux charges
+✓ Traçabilité complète (JSON)
+✓ Gestion des erreurs et avertissements
+✓ Affichage du résumé dans la console
+
+================================================================================
+  MÉTHODES SPÉCIFIQUES
+================================================================================
+
+1. calculer_ligne_charge()
+   - Calcule une ligne de charge pour un exercice donné
+   - Extrait les soldes débiteurs (charges)
+   - Enregistre la traçabilité
+
+2. generer_note()
+   - Génère la note complète avec N et N-1
+   - Calcule la variation
+   - Retourne un DataFrame
+
+3. generer_html()
+   - Surcharge la méthode de base
+   - Adapte la structure aux notes de charges
+   - Pas de colonnes d'amortissement
+
+4. afficher_resume()
+   - Affiche les montants N et N-1
+   - Affiche la variation en montant et %
+
+================================================================================
+  TESTS ET VALIDATION
+================================================================================
+
+Pour tester la Note 21:
+
+1. Exécution rapide:
+   ```bash
+   cd "py_backend/Doc calcul notes annexes/Scripts"
+   python calculer_note_21.py
+   ```
+
+2. Avec script PowerShell:
+   ```powershell
+   .\test-note-21.ps1
+   ```
+
+3. Vérifications:
+   - Fichier HTML généré: ../Tests/test_note_21.html
+   - Fichier de trace: ../Tests/note_21_trace.json
+   - Cohérence des montants N et N-1
+   - Calcul correct de la variation
+
+================================================================================
+  INTÉGRATION AVEC LE SYSTÈME
+================================================================================
+
+La Note 21 s'intègre dans:
+
+1. Architecture modulaire
+   - Utilise Balance_Reader
+   - Utilise Account_Extractor
+   - Utilise Movement_Calculator
+   - Utilise HTML_Generator
+   - Utilise Trace_Manager
+
+2. Cohérence inter-notes
+   - Doit être cohérente avec le compte de résultat
+   - Doit être cohérente avec les autres notes de charges
+   - Validation via Coherence_Validator
+
+3. Orchestrateur principal
+   - Sera appelée par calcul_notes_annexes_main.py
+   - Fait partie des 33 notes à calculer
+
+================================================================================
+  REQUIREMENTS VALIDÉS
+================================================================================
+
+✓ Requirement 5.1: Script Python individuel créé
+✓ Requirement 5.2: Classe CalculateurNote21 avec méthodes requises
+✓ Requirement 5.3: Mapping des comptes défini (60X)
+✓ Requirement 5.4: Calcul des achats de marchandises implémenté
+
+================================================================================
+  PROCHAINES ÉTAPES
+================================================================================
+
+1. Créer les autres notes de charges (Notes 22-27):
+   - Note 22: Achats de Matières
+   - Note 23: Autres Achats
+   - Note 24: Services Extérieurs
+   - Note 25: Charges de Personnel
+   - Note 26: Dotations aux Amortissements
+   - Note 27: Dotations aux Provisions
+
+2. Créer les notes de produits (Notes 28-33)
+
+3. Intégrer toutes les notes dans l'orchestrateur
+
+4. Valider la cohérence inter-notes
+
+================================================================================
+  NOTES TECHNIQUES
+================================================================================
+
+1. Comptes de charges (classe 6):
+   - Le solde débiteur représente les charges
+   - Les mouvements débiteurs sont les charges enregistrées
+   - Les mouvements créditeurs sont les reprises
+
+2. Structure HTML adaptée:
+   - Pas de colonnes d'amortissement
+   - Focus sur les montants de charges
+   - Comparaison N vs N-1
+
+3. Traçabilité:
+   - Enregistrement des comptes sources
+   - Métadonnées de génération
+   - Hash MD5 du fichier de balance
+
+================================================================================
+  DOCUMENTATION
+================================================================================
+
+Documentation complète disponible dans:
+- QUICK_START_NOTE_21.md: Guide de démarrage rapide
+- calculer_note_21.py: Docstrings détaillées
+- test-note-21.ps1: Script de test commenté
+
+================================================================================
+  CONCLUSION
+================================================================================
+
+✓ Task 18.1 complétée avec succès
+✓ Note 21 opérationnelle et testée
+✓ Documentation complète fournie
+✓ Prêt pour intégration dans le système global
+
+Le calculateur de la Note 21 est maintenant prêt à être utilisé pour le calcul
+automatique des achats de marchandises dans le cadre du système de génération
+des 33 notes annexes SYSCOHADA Révisé.
+
+================================================================================

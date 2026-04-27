@@ -1,7 +1,7 @@
 {
   "note": "01",
   "titre": "",
-  "date_generation": "2026-04-24T10:50:50.733469",
+  "date_generation": "2026-04-26T12:29:20.246786",
   "fichier_balance": "P000 - N_N-1_N-2.xlsx",
   "hash_md5_balance": "9713c443d17c0ae8df3fbca9b1e90429",
   "lignes": [
@@ -16,7 +16,7 @@
           "type_valeur": "brut_ouverture"
         }
       ],
-      "timestamp": "2026-04-24T10:50:50.733500"
+      "timestamp": "2026-04-26T12:29:20.246802"
     },
     {
       "libelle": "00000",
@@ -29,7 +29,7 @@
           "type_valeur": "brut_ouverture"
         }
       ],
-      "timestamp": "2026-04-24T10:50:50.733519"
+      "timestamp": "2026-04-26T12:29:20.246807"
     }
   ],
   "total": {}

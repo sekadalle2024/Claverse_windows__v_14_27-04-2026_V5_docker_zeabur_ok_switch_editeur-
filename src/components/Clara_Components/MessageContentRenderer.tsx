@@ -24,6 +24,7 @@ import CiaMethodoAccordionRenderer from './CiaMethodoAccordionRenderer';
 import GuideCommandesAccordionRenderer from './GuideCommandesAccordionRenderer';
 import MethodoRevisionAccordionRenderer from './MethodoRevisionAccordionRenderer';
 import HeatmapRisqueAccordionRenderer from './HeatmapRisqueAccordionRenderer';
+import PapierTravailRenderer from './PapierTravailRenderer';
 
 // Import Chart.js components
 import {
@@ -1302,6 +1303,23 @@ const MessageContentRenderer: React.FC<MessageContentRendererProps> = React.memo
     } catch (e) {
       console.error('Failed to parse CIA Accordion data:', e);
       // Fall back to standard rendering if parsing fails
+    }
+  }
+
+  // ========================================================================
+  // SPECIAL FORMAT HANDLING: Papier de Travail Renderer
+  // ========================================================================
+  if (processedContent.content.startsWith('__PAPIER_TRAVAIL__')) {
+    try {
+      const jsonStr = processedContent.content.replace('__PAPIER_TRAVAIL__', '');
+      const papierData = JSON.parse(jsonStr);
+      return (
+        <div className={`papier-travail-container ${className}`}>
+          <PapierTravailRenderer data={papierData} isDark={darkMode} />
+        </div>
+      );
+    } catch (e) {
+      console.error('Failed to parse Papier de Travail data:', e);
     }
   }
 

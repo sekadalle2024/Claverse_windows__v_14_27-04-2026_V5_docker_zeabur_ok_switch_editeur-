@@ -1,168 +1,127 @@
-# Quick Start - Note 10 (Résultat)
+# Quick Start - Note 10: Résultat
 
 ## Vue d'ensemble
 
-La Note 10 calcule les mouvements du résultat (bénéfices et pertes) à partir des balances SYSCOHADA.
+La Note 10 présente les mouvements du résultat (bénéfice ou perte) sur trois exercices.
 
-## Structure de la Note 10
+## Comptes concernés
 
-La Note 10 contient **6 lignes de détail** + 1 ligne de total:
+- **12X**: Résultat de l'exercice
+- **13X**: Résultat en instance d'affectation
 
-1. **Report à nouveau créditeur** (compte 121)
-2. **Report à nouveau débiteur** (compte 129)
-3. **Résultat en instance d'affectation - Bénéfice** (compte 1301)
-4. **Résultat en instance d'affectation - Perte** (compte 1309)
-5. **Résultat net de l'exercice - Bénéfice** (compte 131)
-6. **Résultat net de l'exercice - Perte** (compte 139)
-7. **TOTAL RÉSULTAT** (somme des lignes 1-6)
+## Structure de la note
 
-## Mapping des comptes SYSCOHADA
-
-| Ligne | Comptes bruts | Comptes amortissement |
-|-------|---------------|----------------------|
-| Report à nouveau créditeur | 121 | Aucun |
-| Report à nouveau débiteur | 129 | Aucun |
-| Résultat en instance - Bénéfice | 1301 | Aucun |
-| Résultat en instance - Perte | 1309 | Aucun |
-| Résultat net - Bénéfice | 131 | Aucun |
-| Résultat net - Perte | 139 | Aucun |
-
-**Note**: Les comptes de résultat ne font pas l'objet d'amortissements.
+| Libellé | Exercice N-2 | Exercice N-1 | Exercice N |
+|---------|--------------|--------------|------------|
+| Résultat de l'exercice | Montant | Montant | Montant |
+| Résultat en instance d'affectation | Montant | Montant | Montant |
+| **TOTAL** | **Total N-2** | **Total N-1** | **Total N** |
 
 ## Exécution rapide
 
-### Option 1: Script PowerShell (recommandé)
-
+### Windows PowerShell
 ```powershell
+# Depuis la racine du projet
 .\test-note-10.ps1
 ```
 
-### Option 2: Ligne de commande Python
-
+### Ligne de commande directe
 ```bash
-# Avec le fichier de balance par défaut
-python "py_backend/Doc calcul notes annexes/Scripts/calculer_note_10.py"
-
-# Avec un fichier de balance personnalisé
-python "py_backend/Doc calcul notes annexes/Scripts/calculer_note_10.py" "chemin/vers/balance.xlsx"
-
-# Avec des chemins de sortie personnalisés
-python "py_backend/Doc calcul notes annexes/Scripts/calculer_note_10.py" \
-    --output-html "mon_rapport.html" \
-    --output-trace "ma_trace.json"
+# Depuis la racine du projet
+cd py_backend
+python "Doc calcul notes annexes/Scripts/calculer_note_10.py"
+cd ..
 ```
 
 ## Fichiers générés
 
-Après exécution, les fichiers suivants sont créés:
+- **HTML**: `py_backend/Doc calcul notes annexes/Tests/test_note_10.html`
+  - Tableau formaté avec style SYSCOHADA
+  - Montants avec séparateurs de milliers
+  - Ligne de total en gras
 
-1. **test_note_10.html** - Tableau HTML formaté de la Note 10
-2. **trace_note_10.json** - Fichier de traçabilité avec détails des calculs
+## Interprétation des résultats
 
-## Structure du tableau HTML
+### Soldes positifs (Bénéfice)
+- Solde créditeur > Solde débiteur
+- Indique un résultat bénéficiaire
 
-Le tableau généré contient **11 colonnes**:
+### Soldes négatifs (Perte)
+- Solde débiteur > Solde créditeur
+- Indique un résultat déficitaire
 
-### Groupe 1: VALEURS BRUTES
-- Début exercice (ouverture N-1)
-- Augmentations (mouvements débit N)
-- Diminutions (mouvements crédit N)
-- Fin exercice (clôture N)
+### Résultat en instance d'affectation
+- Résultat non encore affecté aux réserves ou distribué
+- Peut provenir d'exercices antérieurs
 
-### Groupe 2: AMORTISSEMENTS
-- Début exercice (toujours 0 pour le résultat)
-- Dotations (toujours 0)
-- Reprises (toujours 0)
-- Fin exercice (toujours 0)
+## Vérifications à effectuer
 
-### Groupe 3: VALEURS NETTES
-- Début exercice (VNC ouverture)
-- Fin exercice (VNC clôture)
+1. **Cohérence temporelle**
+   - Le résultat N-1 doit correspondre au compte de résultat N-1
+   - Le résultat N doit correspondre au compte de résultat N
 
-## Validation des résultats
+2. **Affectation du résultat**
+   - Vérifier que le résultat en instance correspond aux décisions d'affectation
+   - Contrôler la cohérence avec les mouvements de réserves (Note 9)
 
-### Vérifications automatiques
+3. **Total**
+   - Le total doit être la somme des deux lignes
+   - Vérifier la cohérence avec le bilan passif
 
-Le script effectue automatiquement:
-
-1. **Cohérence comptable**: Vérifie que Clôture = Ouverture + Augmentations - Diminutions
-2. **Chargement des balances**: Vérifie que les 3 exercices (N, N-1, N-2) sont présents
-3. **Traçabilité**: Enregistre tous les comptes sources utilisés
-
-### Vérifications manuelles recommandées
-
-1. **Total cohérent**: Le total doit correspondre à la somme des lignes
-2. **Signes corrects**: 
-   - Comptes créditeurs (121, 1301, 131) = montants positifs
-   - Comptes débiteurs (129, 1309, 139) = montants négatifs
-3. **Continuité temporelle**: Clôture N-1 = Ouverture N
-
-## Exemple de sortie console
+## Exemple de sortie
 
 ```
-================================================================================
-  CALCULATEUR NOTE 10 - RÉSULTAT
-================================================================================
+NOTE 10 - RÉSULTAT
 
-📂 Chargement des balances depuis: ../../../P000 -BALANCE DEMO N_N-1_N-2.xls
-✓ Balance N   : 150 lignes chargées
-✓ Balance N-1 : 150 lignes chargées
-✓ Balance N-2 : 150 lignes chargées
-
-🔢 Calcul de la note 10...
-  Calcul: Report à nouveau créditeur...
-  Calcul: Report à nouveau débiteur...
-  Calcul: Résultat en instance d'affectation - Bénéfice...
-  Calcul: Résultat en instance d'affectation - Perte...
-  Calcul: Résultat net de l'exercice - Bénéfice...
-  Calcul: Résultat net de l'exercice - Perte...
-✓ Note calculée: 7 lignes
-
-📄 Génération du HTML...
-✓ HTML généré
-
-✓ Fichier HTML sauvegardé: ../Tests/test_note_10.html
-✓ Fichier de trace sauvegardé: ../Tests/trace_note_10.json
-
-────────────────────────────────────────────────────────────────────────────────
-  RÉSUMÉ NOTE 10
-────────────────────────────────────────────────────────────────────────────────
-
-  Nombre de lignes: 6
-  VNC Ouverture:           5,000,000
-  VNC Clôture:             6,500,000
-  Variation:               1,500,000
-
-================================================================================
-  ✓ NOTE 10 CALCULÉE AVEC SUCCÈS EN 2.45s
-================================================================================
+Libellé                                    Exercice N-2    Exercice N-1    Exercice N
+Résultat de l'exercice                     15 000 000      18 500 000      22 000 000
+Résultat en instance d'affectation          2 000 000       1 500 000       3 000 000
+TOTAL                                      17 000 000      20 000 000      25 000 000
 ```
+
+## Cas particuliers
+
+### Résultat déficitaire
+- Affiché en négatif (ou entre parenthèses selon convention)
+- Peut réduire les capitaux propres
+
+### Report à nouveau
+- Peut être inclus dans le résultat en instance d'affectation
+- Vérifier la cohérence avec les statuts de l'entreprise
+
+### Affectation partielle
+- Une partie du résultat peut être affectée immédiatement
+- Le reste reste en instance d'affectation
 
 ## Dépannage
 
-### Erreur: "Balance non trouvée"
-- Vérifier que le fichier `P000 -BALANCE DEMO N_N-1_N-2.xls` existe
-- Vérifier les onglets: "BALANCE N", "BALANCE N-1", "BALANCE N-2"
+### Erreur: Fichier de balance introuvable
+```
+Solution: Vérifier que P000 -BALANCE DEMO N_N-1_N-2.xlsx existe à la racine
+```
 
-### Erreur: "Module non trouvé"
-- Vérifier que tous les modules sont dans `py_backend/Doc calcul notes annexes/Modules/`
-- Modules requis: balance_reader, account_extractor, movement_calculator, vnc_calculator, html_generator, trace_manager
+### Montants à zéro
+```
+Cause possible: Comptes 12X ou 13X absents de la balance
+Solution: Vérifier la présence des comptes dans la balance
+```
 
-### Avertissement: "Incohérence détectée"
-- Normal si les balances de test ne sont pas parfaitement équilibrées
-- Vérifier l'écart affiché et investiguer si > 1%
+### Incohérence avec le compte de résultat
+```
+Solution: Vérifier que le compte 12 correspond bien au résultat net
+         Contrôler les écritures de clôture
+```
 
 ## Prochaines étapes
 
-Après avoir validé la Note 10:
-
-1. Vérifier le fichier HTML généré dans un navigateur
-2. Consulter le fichier de trace JSON pour les détails
-3. Passer à la Note 11 (Provisions) si nécessaire
+Après validation de la Note 10:
+1. Vérifier la cohérence avec le compte de résultat
+2. Contrôler l'affectation du résultat (Note 9 - Réserves)
+3. Passer à la Note 11 (Provisions)
 
 ## Support
 
 Pour plus d'informations:
-- Consulter le README principal: `py_backend/Doc calcul notes annexes/README.md`
-- Consulter la documentation des modules: `py_backend/Doc calcul notes annexes/Modules/`
-- Consulter les tests: `py_backend/Doc calcul notes annexes/Tests/`
+- Voir `requirements.md` - Requirement 5
+- Voir `design.md` - Section Components
+- Consulter le template: `calculateur_note_template.py`

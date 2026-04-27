@@ -1,0 +1,95 @@
+========================================
+TASK 17.8 COMPLETED - NOTE 18
+========================================
+
+Date: 26 avril 2026
+Task: Create calculer_note_18.py for Charges Constatées d'Avance
+Status: ✓ COMPLETED
+
+========================================
+FICHIERS CRÉÉS
+========================================
+
+1. py_backend/Doc calcul notes annexes/Scripts/calculer_note_18.py
+   - Calculateur pour la Note 18
+   - Mapping: compte 476 (Charges constatées d'avance)
+   - Calcul des mouvements (augmentations/diminutions)
+   - Génération HTML conforme SYSCOHADA
+
+2. test-note-18.ps1
+   - Script de test PowerShell
+   - Exécution automatisée du calculateur
+   - Vérification des fichiers générés
+
+3. py_backend/Doc calcul notes annexes/Tests/QUICK_START_NOTE_18.md
+   - Guide de démarrage rapide
+   - Documentation des comptes concernés
+   - Exemples d'utilisation
+
+========================================
+CARACTÉRISTIQUES IMPLÉMENTÉES
+========================================
+
+✓ Mapping des comptes:
+  - 476: Charges constatées d'avance
+
+✓ Calculs:
+  - Solde début exercice (N-1)
+  - Augmentations (mouvements débit N)
+  - Diminutions (mouvements crédit N)
+  - Solde fin exercice (N)
+
+✓ Validation:
+  - Vérification de cohérence comptable
+  - Traçabilité complète des calculs
+  - Gestion des comptes manquants
+
+✓ Génération:
+  - Fichier HTML formaté SYSCOHADA
+  - Fichier de trace JSON
+  - Métadonnées de génération
+
+========================================
+REQUIREMENTS VALIDÉS
+========================================
+
+✓ Requirement 5.1: Structure modulaire
+✓ Requirement 5.2: Classe CalculateurNote18
+✓ Requirement 5.3: Mapping des comptes défini
+✓ Requirement 5.4: Calcul des mouvements
+
+========================================
+TESTS DISPONIBLES
+========================================
+
+Exécution rapide:
+  .\test-note-18.ps1
+
+Exécution directe:
+  cd py_backend
+  python "Doc calcul notes annexes/Scripts/calculer_note_18.py"
+
+========================================
+PARTICULARITÉS NOTE 18
+========================================
+
+- Compte d'actif (solde débiteur)
+- Régularisation de charges payées d'avance
+- Exemples: loyers, assurances, abonnements
+- Pas de ligne de total (une seule ligne)
+
+========================================
+PROCHAINES ÉTAPES
+========================================
+
+Task 17.9: Create calculer_note_19.py
+  - Produits Constatés d'Avance
+  - Compte 477
+
+Task 17.10: Create calculer_note_20.py
+  - Écarts de Conversion Passif
+  - Compte 478
+
+========================================
+✓ TASK 17.8 COMPLETED SUCCESSFULLY
+========================================

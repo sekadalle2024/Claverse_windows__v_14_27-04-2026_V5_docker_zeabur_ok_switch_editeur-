@@ -5,13 +5,21 @@ All notable changes to Clara will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 0.1.4
+---
 
-### 🚧 In Development
-- Multi-user support with authentication
-- Cloud deployment templates for AWS/GCP/Azure
-- Plugin system for custom AI tools
-- Enhanced N8N workflow integration
+## [0.1.4-dev] - 2026-04-26
+
+### 📑 Papier de Travail (Audit) - Affinage & UI
+- **Fusion des cellules vides** : Utilisation de `colspan` dans les schémas de calcul et cross-références pour un meilleur alignement visuel.
+- **Optimisation des formules** : Augmentation de la largeur des cellules (+60%) et interdiction des retours à la ligne pour les formules mathématiques.
+- **Détection robuste** : Amélioration de l'extraction de la "Nature de test" même en cas de rendu vertical (colonnes).
+- **Consolidation & Dropdowns** :
+  - Intégration de la colonne **RÉSULTAT** dans la détection des tables modélisées.
+  - Standardisation des menus déroulants :
+    - Assertion (5 valeurs réglementaires).
+    - Conclusion (4 états : Satisfaisant, etc.).
+    - CTR (+, -, N/A).
+- **Revue Manager** : Intégration du composant `RevueManagerAccordion` avec persistance `localStorage`.
 
 ---
 
