@@ -345,53 +345,53 @@ This implementation plan creates a modular Python system to automate the calcula
     - Implement calculation for personnel expenses
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 18.6 Create calculer_note_26.py for Dotations aux Amortissements
+  - [x] 18.6 Create calculer_note_26.py for Dotations aux Amortissements
     - Define mapping for accounts 681X
     - Implement calculation for depreciation charges
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 18.7 Create calculer_note_27.py for Dotations aux Provisions
+  - [x] 18.7 Create calculer_note_27.py for Dotations aux Provisions
     - Define mapping for accounts 691X
     - Implement calculation for provision charges
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
 - [ ] 19. Create calculators for Notes 28-33 (Income Statement - Produits)
-  - [ ] 19.1 Create calculer_note_28.py for Ventes de Marchandises
+  - [x] 19.1 Create calculer_note_28.py for Ventes de Marchandises
     - Define mapping for accounts 70X
     - Implement calculation for sales of goods
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 19.2 Create calculer_note_29.py for Ventes de Produits Finis
+  - [x] 19.2 Create calculer_note_29.py for Ventes de Produits Finis
     - Define mapping for accounts 701, 702, 703
     - Implement calculation for sales of finished products
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 19.3 Create calculer_note_30.py for Production Immobilisée
+  - [x] 19.3 Create calculer_note_30.py for Production Immobilisée
     - Define mapping for accounts 72X
     - Implement calculation for capitalized production
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 19.4 Create calculer_note_31.py for Subventions d'Exploitation
+  - [x] 19.4 Create calculer_note_31.py for Subventions d'Exploitation
     - Define mapping for accounts 71X
     - Implement calculation for operating subsidies
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 19.5 Create calculer_note_32.py for Reprises de Provisions
+  - [x] 19.5 Create calculer_note_32.py for Reprises de Provisions
     - Define mapping for accounts 791X
     - Implement calculation for provision reversals
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 19.6 Create calculer_note_33.py for Produits Financiers
+  - [x] 19.6 Create calculer_note_33.py for Produits Financiers
     - Define mapping for accounts 77X
     - Implement calculation for financial income
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-- [ ] 20. Checkpoint - Ensure all 33 note calculators are complete
+- [x] 20. Checkpoint - Ensure all 33 note calculators are complete
   - Ensure all tests pass, ask the user if questions arise.
 
 
 - [ ] 21. Implement main orchestrator
-  - [ ] 21.1 Create calcul_notes_annexes_main.py
+  - [x] 21.1 Create calcul_notes_annexes_main.py
     - Implement CalculNotesAnnexesMain class
     - Implement calculer_toutes_notes() method to execute all 33 calculators
     - Implement balance caching to load balances only once
@@ -400,7 +400,7 @@ This implementation plan creates a modular Python system to automate the calcula
     - Generate summary report with calculation status for each note
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7_
 
-  - [ ] 21.2 Integrate Coherence_Validator into orchestrator
+  - [-] 21.2 Integrate Coherence_Validator into orchestrator
     - Call validator after all notes are calculated
     - Generate coherence report HTML
     - Emit alerts if coherence rate < 95%

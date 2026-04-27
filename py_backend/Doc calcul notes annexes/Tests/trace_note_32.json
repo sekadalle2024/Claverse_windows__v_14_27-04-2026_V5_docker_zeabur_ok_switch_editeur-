@@ -1,0 +1,62 @@
+{
+  "note": "32",
+  "titre": "",
+  "date_generation": "2026-04-27T16:50:47.204450",
+  "fichier_balance": "H:\\ClaraVerse\\py_backend\\BALANCES_N_N1_N2.xlsx",
+  "hash_md5_balance": "b93b38853776bb3f96ebb382d1ee3cc5",
+  "lignes": [
+    {
+      "libelle": "Reprises de provisions pour risques et charges",
+      "montant": 0.0,
+      "comptes_sources": [
+        {
+          "compte": "7911",
+          "type": "reprise_provision",
+          "solde_debit_n": 0.0,
+          "solde_credit_n": 0.0
+        }
+      ],
+      "timestamp": "2026-04-27T16:50:47.535871"
+    },
+    {
+      "libelle": "Reprises de provisions pour dépréciation des immobilisations",
+      "montant": 14043438.0,
+      "comptes_sources": [
+        {
+          "compte": "7912",
+          "type": "reprise_provision",
+          "solde_debit_n": 0.0,
+          "solde_credit_n": 14043438.0
+        }
+      ],
+      "timestamp": "2026-04-27T16:50:47.584607"
+    },
+    {
+      "libelle": "Reprises de provisions pour dépréciation des stocks",
+      "montant": 0.0,
+      "comptes_sources": [
+        {
+          "compte": "7913",
+          "type": "reprise_provision",
+          "solde_debit_n": 0.0,
+          "solde_credit_n": 0.0
+        }
+      ],
+      "timestamp": "2026-04-27T16:50:47.629802"
+    },
+    {
+      "libelle": "Reprises de provisions pour dépréciation des créances",
+      "montant": 0.0,
+      "comptes_sources": [
+        {
+          "compte": "7914",
+          "type": "reprise_provision",
+          "solde_debit_n": 0.0,
+          "solde_credit_n": 0.0
+        }
+      ],
+      "timestamp": "2026-04-27T16:50:47.685478"
+    }
+  ],
+  "total": {}
+}

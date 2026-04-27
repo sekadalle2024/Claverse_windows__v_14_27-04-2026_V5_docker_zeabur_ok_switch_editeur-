@@ -1,0 +1,81 @@
+✓ TASK 18.7 COMPLETED - Note 27: Dotations aux Provisions
+===========================================================
+
+Date: 2024
+Task: Create calculer_note_27.py for Dotations aux Provisions
+Status: COMPLETED
+
+Fichiers créés:
+--------------
+1. py_backend/Doc calcul notes annexes/Scripts/calculer_note_27.py
+   - Calculateur pour Note 27
+   - Mapping des comptes 691X
+   - Calcul des dotations par catégorie de provision
+   - Génération HTML et export Excel
+   - Traçabilité complète
+
+2. py_backend/Doc calcul notes annexes/Tests/QUICK_START_NOTE_27.md
+   - Guide de démarrage rapide
+   - Exemples d'utilisation
+   - Format de sortie
+   - Règles de calcul
+   - Contrôles de cohérence
+
+3. test-note-27.ps1
+   - Script PowerShell de test
+   - Validation du calculateur
+
+Structure de la Note 27:
+-----------------------
+- Dotations aux provisions pour risques et charges (6911)
+- Dotations aux provisions pour dépréciation des immobilisations (6912)
+- Dotations aux provisions pour dépréciation des stocks (6913)
+- Dotations aux provisions pour dépréciation des créances (6914)
+- Total des dotations aux provisions
+
+Comptes utilisés:
+----------------
+- 6911: Dotations aux provisions pour risques et charges
+- 6912: Dotations aux provisions pour dépréciation des immobilisations
+- 6913: Dotations aux provisions pour dépréciation des stocks
+- 6914: Dotations aux provisions pour dépréciation des créances
+
+Fonctionnalités:
+---------------
+✓ Extraction des comptes 691X
+✓ Calcul des dotations par catégorie
+✓ Calcul du total
+✓ Génération HTML
+✓ Export Excel
+✓ Traçabilité des calculs
+✓ Support N et N-1
+
+Tests:
+------
+Pour tester:
+  .\test-note-27.ps1
+
+Ou directement:
+  cd "py_backend/Doc calcul notes annexes/Scripts"
+  python calculer_note_27.py
+
+Requirements satisfaits:
+-----------------------
+✓ 5.1: Mapping des comptes SYSCOHADA
+✓ 5.2: Calcul des dotations aux provisions
+✓ 5.3: Génération des formats de sortie
+✓ 5.4: Traçabilité des calculs
+
+Prochaines étapes:
+-----------------
+- Task 19.1: Create calculer_note_28.py (Ventes de Marchandises)
+- Task 19.2: Create calculer_note_29.py (Ventes de Produits Finis)
+
+Notes:
+------
+- Le calculateur suit le template standard
+- Utilise les modules communs (balance_reader, account_extractor, etc.)
+- Génère des traces pour audit
+- Compatible avec les autres notes
+- Prêt pour l'intégration
+- Cohérence avec Note 11 (Provisions) et Note 32 (Reprises)

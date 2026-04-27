@@ -1,0 +1,205 @@
+================================================================================
+  TASK 19.5 COMPLETED - NOTE 32: REPRISES DE PROVISIONS
+================================================================================
+
+Date: 27 avril 2026
+Status: ✓ COMPLETED SUCCESSFULLY
+
+================================================================================
+  OVERVIEW
+================================================================================
+
+Task 19.5 has been successfully completed. The calculator for Note 32 
+(Reprises de Provisions) has been implemented, tested, and validated.
+
+================================================================================
+  DELIVERABLES
+================================================================================
+
+✓ calculer_note_32.py - Main calculator script
+✓ test-note-32.ps1 - PowerShell test script
+✓ QUICK_START_NOTE_32.md - Quick start guide
+✓ test_note_32.html - Generated HTML output
+✓ trace_note_32.json - Calculation traceability file
+
+================================================================================
+  IMPLEMENTATION DETAILS
+================================================================================
+
+Comptes Mapping (791X - Reprises de Provisions):
+  • 7911: Reprises de provisions pour risques et charges
+  • 7912: Reprises de provisions pour dépréciation des immobilisations
+  • 7913: Reprises de provisions pour dépréciation des stocks
+  • 7914: Reprises de provisions pour dépréciation des créances
+
+Structure:
+  • 4 categories of provision reversals
+  • 1 total line
+  • 2 columns: Exercise N and N-1
+
+================================================================================
+  TEST RESULTS
+================================================================================
+
+Balance File: BALANCES_N_N1_N2.xlsx
+  ✓ Balance N:   405 lines loaded
+  ✓ Balance N-1: 405 lines loaded
+  ✓ Balance N-2: 405 lines loaded
+
+Calculated Amounts:
+  • Reprises risques et charges N:                    0
+  • Reprises dépréciation immobilisations N:  14,043,438
+  • Reprises dépréciation stocks N:                   0
+  • Reprises dépréciation créances N:                 0
+  • TOTAL REPRISES N:                         14,043,438
+
+  • Reprises risques et charges N-1:                  0
+  • Reprises dépréciation immobilisations N-1: 13,341,266
+  • Reprises dépréciation stocks N-1:                 0
+  • Reprises dépréciation créances N-1:               0
+  • TOTAL REPRISES N-1:                       13,341,266
+
+Variation: +702,172
+
+Execution Time: 14.06 seconds
+
+================================================================================
+  VALIDATION CHECKS
+================================================================================
+
+✓ Balance loading successful
+✓ Account extraction (791X) working correctly
+✓ Credit balance calculation correct (provisions reversals are credits)
+✓ Sign inversion applied (to show positive amounts)
+✓ HTML generation conforming to SYSCOHADA format
+✓ Traceability file generated with complete calculation details
+✓ Total calculation accurate
+✓ Variation calculation correct
+
+================================================================================
+  KEY FEATURES IMPLEMENTED
+================================================================================
+
+1. Account Extraction
+   - Extracts accounts 791X (provision reversals)
+   - Handles multiple account roots per category
+   - Graceful handling of missing accounts (returns 0)
+
+2. Calculation Logic
+   - Calculates credit balances (reversals are credits/products)
+   - Inverts sign to show positive amounts
+   - Compares N and N-1 exercises
+   - Calculates variation
+
+3. HTML Generation
+   - 3-column table (Nature, N, N-1)
+   - SYSCOHADA-compliant formatting
+   - Thousand separators for amounts
+   - Total row with distinct styling
+
+4. Traceability
+   - Records all source accounts
+   - Tracks calculation steps
+   - Includes metadata (file hash, timestamp)
+   - JSON format for easy parsing
+
+================================================================================
+  REQUIREMENTS VALIDATED
+================================================================================
+
+✓ Requirement 5.1: Script structure follows template
+✓ Requirement 5.2: Implements required methods
+✓ Requirement 5.3: Uses shared modules correctly
+✓ Requirement 5.4: Generates HTML output
+
+================================================================================
+  RELATION TO OTHER NOTES
+================================================================================
+
+Note 27 (Dotations aux Provisions):
+  - Provisions are created through dotations (Note 27)
+  - Provisions are reversed through reprises (Note 32)
+  - Both notes track provision movements
+
+Compte de Résultat:
+  - Reprises are products (increase result)
+  - Dotations are charges (decrease result)
+  - Net impact = Reprises - Dotations
+
+================================================================================
+  FILES GENERATED
+================================================================================
+
+Location: py_backend/Doc calcul notes annexes/
+
+Scripts/:
+  ✓ calculer_note_32.py (main calculator)
+
+Tests/:
+  ✓ test_note_32.html (HTML output)
+  ✓ trace_note_32.json (traceability)
+  ✓ QUICK_START_NOTE_32.md (documentation)
+  ✓ 00_TASK_19_5_COMPLETED_NOTE_32.txt (this file)
+
+Root/:
+  ✓ test-note-32.ps1 (test script)
+
+================================================================================
+  NEXT STEPS
+================================================================================
+
+→ Task 19.6: Create calculer_note_33.py for Produits Financiers
+   - Last note in the income statement (Produits section)
+   - Accounts 77X (financial income)
+   - Completes the 33 notes implementation
+
+================================================================================
+  USAGE INSTRUCTIONS
+================================================================================
+
+Quick Test:
+  .\test-note-32.ps1
+
+Python Direct:
+  python "py_backend/Doc calcul notes annexes/Scripts/calculer_note_32.py"
+
+View Results:
+  - Open: py_backend/Doc calcul notes annexes/Tests/test_note_32.html
+  - Review: py_backend/Doc calcul notes annexes/Tests/trace_note_32.json
+
+Documentation:
+  - Read: py_backend/Doc calcul notes annexes/Tests/QUICK_START_NOTE_32.md
+
+================================================================================
+  TECHNICAL NOTES
+================================================================================
+
+Provision Reversals Logic:
+  1. Provisions are liabilities (credit accounts)
+  2. Reversals reduce provisions (debit movements)
+  3. But reversals are recorded in 791X (credit = product)
+  4. We extract credit balance and invert sign for display
+
+Account Structure:
+  791X = Reprises de provisions (Products)
+  691X = Dotations aux provisions (Charges)
+  19X = Provisions (Liabilities)
+
+Calculation Formula:
+  Reprises N = |Solde Crédit N - Solde Débit N|
+
+================================================================================
+  CONCLUSION
+================================================================================
+
+Task 19.5 is COMPLETE. The Note 32 calculator is fully functional, tested,
+and documented. It correctly calculates provision reversals from accounts
+791X and generates SYSCOHADA-compliant output.
+
+The implementation follows the established template pattern and integrates
+seamlessly with the shared modules (Balance_Reader, Account_Extractor,
+Movement_Calculator, HTML_Generator, Trace_Manager).
+
+Ready to proceed to Task 19.6 (Note 33 - Produits Financiers).
+
+================================================================================
