@@ -1,0 +1,51 @@
+{
+  "note": "3a",
+  "titre": "",
+  "date_generation": "2026-04-27T17:45:17.774342",
+  "fichier_balance": "H:\\ClaraVerse\\py_backend\\Doc calcul notes annexes\\Tests\\..\\..\\P000 -BALANCE DEMO N_N-1_N-2.xls",
+  "hash_md5_balance": "cf926871c313939e8e562108090d2f57",
+  "lignes": [
+    {
+      "libelle": "Frais de recherche et de développement",
+      "montant": 0.0,
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.774618"
+    },
+    {
+      "libelle": "Brevets, licences, logiciels et droits similaires",
+      "montant": 23125988.0,
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.774728"
+    },
+    {
+      "libelle": "Fonds commercial et droit au bail",
+      "montant": 0.0,
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.774828"
+    },
+    {
+      "libelle": "Autres immobilisations incorporelles",
+      "montant": 0.0,
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.774925"
+    },
+    {
+      "libelle": "TOTAL IMMOBILISATIONS INCORPORELLES",
+      "montant": 23125988.0,
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.775019"
+    }
+  ],
+  "total": {
+    "brut_ouverture": 23125988.0,
+    "augmentations": 0.0,
+    "diminutions": 0.0,
+    "brut_cloture": 23125988.0,
+    "amort_ouverture": 23125987.0,
+    "dotations": 0.0,
+    "reprises": 0.0,
+    "amort_cloture": 23125987.0,
+    "vnc_ouverture": 1.0,
+    "vnc_cloture": 1.0
+  }
+}

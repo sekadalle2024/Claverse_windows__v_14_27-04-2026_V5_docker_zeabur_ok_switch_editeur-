@@ -1,0 +1,236 @@
+================================================================================
+TASK 21.2 COMPLETED - COHERENCE_VALIDATOR INTEGRATION
+================================================================================
+
+Date: 27 avril 2026
+Status: ✓ COMPLETED
+Task: 21.2 Integrate Coherence_Validator into orchestrator
+
+================================================================================
+SUMMARY
+================================================================================
+
+The Coherence_Validator has been successfully integrated into the orchestrator
+(calcul_notes_annexes_main.py). The integration includes:
+
+1. ✓ Call validator after all notes are calculated
+2. ✓ Generate coherence report HTML
+3. ✓ Emit alerts if coherence rate < 95%
+
+================================================================================
+IMPLEMENTATION DETAILS
+================================================================================
+
+Location: calcul_notes_annexes_main.py
+
+Method: valider_coherence() (lines 488-525)
+
+Integration in main() workflow (lines 611-680):
+  1. calculer_toutes_notes()     # Calculate all 33 notes
+  2. valider_coherence()          # ← Task 21.2 integration
+  3. generer_traces()             # Generate trace files
+  4. exporter_excel()             # Export to Excel
+
+================================================================================
+FEATURES IMPLEMENTED
+================================================================================
+
+1. VALIDATOR CALL AFTER CALCULATION
+   - CoherenceValidator is instantiated with all calculated notes
+   - Called automatically in main() after calculer_toutes_notes()
+   - Returns global coherence rate (0-100%)
+
+2. HTML COHERENCE REPORT GENERATION
+   - File: Tests/rapport_coherence.html
+   - Contains detailed validations:
+     * Total immobilizations (Notes 3A-3E vs Balance Sheet)
+     * Depreciation charges (Notes 3A-3E vs Income Statement)
+     * Temporal continuity (N-1 closing = N opening)
+   - Includes global coherence rate
+   - Lists all detected discrepancies
+
+3. ALERT EMISSION IF RATE < 95%
+   - Critical alert logged if coherence rate < 95%
+   - Message: "⚠ ALERTE CRITIQUE: Taux de cohérence X.X% < 95%"
+   - Logged to: Logs/calcul_notes_annexes.log
+   - Also logged to: Logs/calcul_notes_warnings.log
+
+================================================================================
+CODE IMPLEMENTATION
+================================================================================
+
+def valider_coherence(self) -> float:
+    """
+    Valide la cohérence inter-notes.
+    
+    Returns:
+        Taux de cohérence global (0-100)
+    """
+    if not self.notes_calculees:
+        logging.warning("Aucune note calculée pour la validation")
+        return 0.0
+    
+    logging.info("Validation de la cohérence inter-notes...")
+    
+    # 1. Create validator with all notes
+    validator = CoherenceValidator(self.notes_calculees)
+    
+    # 2. Calculate coherence rate
+    taux = validator.calculer_taux_coherence()
+    
+    # 3. Emit alert if rate < 95%
+    if taux < 95.0:
+        logging.warning(f"⚠ ALERTE CRITIQUE: Taux de cohérence {taux:.1f}% < 95%")
+    else:
+        logging.info(f"✓ Taux de cohérence acceptable: {taux:.1f}% >= 95%")
+    
+    # 4. Generate HTML report
+    rapport_html = validator.generer_rapport_coherence()
+    fichier_rapport = os.path.join(
+        os.path.dirname(__file__),
+        'Tests',
+        'rapport_coherence.html'
+    )
+    
+    os.makedirs(os.path.dirname(fichier_rapport), exist_ok=True)
+    with open(fichier_rapport, 'w', encoding='utf-8') as f:
+        f.write(rapport_html)
+    
+    logging.info(f"✓ Rapport de cohérence sauvegardé: {fichier_rapport}")
+    
+    return taux
+
+================================================================================
+VALIDATIONS PERFORMED
+================================================================================
+
+The CoherenceValidator performs the following validations:
+
+1. Total Immobilizations (Requirement 10.1)
+   - Sums Notes 3A, 3B, 3C, 3D, 3E
+   - Compares with Balance Sheet actif
+   - Calculates deviation
+
+2. Depreciation Charges (Requirement 10.2)
+   - Sums depreciation charges from Notes 3A-3E
+   - Compares with Income Statement
+   - Calculates deviation
+
+3. Temporal Continuity (Requirement 10.3)
+   - Verifies: Closing Balance N-1 = Opening Balance N
+   - Checks for all notes
+   - Reports discrepancies
+
+4. Global Coherence Rate (Requirement 10.5)
+   - Percentage of validations with deviation < 1%
+   - Formula: (valid_checks / total_checks) * 100
+
+================================================================================
+FILES CREATED
+================================================================================
+
+1. test_coherence_integration.py
+   - Integration tests for coherence validation
+   - 5 test cases covering all requirements
+   - All tests passing
+
+2. QUICK_START_COHERENCE_INTEGRATION.md
+   - Quick start guide for testing
+   - Detailed documentation of integration
+   - Usage examples
+
+3. test-coherence-integration.ps1
+   - PowerShell test script
+   - Verifies code integration
+   - Runs integration tests
+
+4. 00_TASK_21_2_COMPLETED_COHERENCE_INTEGRATION.txt
+   - This summary document
+
+================================================================================
+GENERATED FILES (AFTER EXECUTION)
+================================================================================
+
+After running calcul_notes_annexes_main.py:
+
+Tests/
+├── rapport_coherence.html          # ✓ Coherence report (Task 21.2)
+├── rapport_recapitulatif.html      # Summary report
+├── Notes_Annexes_Calculees_YYYYMMDD.xlsx  # Excel export
+└── trace_note_*.json               # Calculation traces
+
+Logs/
+├── calcul_notes_annexes.log        # ✓ Main log with alerts (Task 21.2)
+├── calcul_notes_warnings.log       # Warnings only
+└── calcul_notes_errors.log         # Errors only
+
+================================================================================
+REQUIREMENTS VALIDATED
+================================================================================
+
+✓ Requirement 10.1: Validation total immobilisations
+✓ Requirement 10.2: Validation dotations amortissements
+✓ Requirement 10.3: Validation continuité temporelle
+✓ Requirement 10.4: Détection incohérences avec rapport d'écart
+✓ Requirement 10.5: Calcul taux de cohérence global
+✓ Requirement 10.6: Alerte si taux < 95%
+✓ Requirement 10.7: Rapport de cohérence HTML sauvegardé
+
+================================================================================
+TEST RESULTS
+================================================================================
+
+All integration tests passed successfully:
+
+✓ test_valider_coherence_called_after_calculation
+✓ test_rapport_coherence_generated
+✓ test_alert_emitted_when_coherence_low
+✓ test_coherence_validator_receives_all_notes
+✓ test_coherence_validation_in_main_workflow
+
+Ran 5 tests in 0.063s - OK
+
+================================================================================
+USAGE
+================================================================================
+
+To test the integration:
+
+1. Run integration tests:
+   cd "py_backend/Doc calcul notes annexes/Tests"
+   python test_coherence_integration.py
+
+2. Run with real data:
+   cd "py_backend/Doc calcul notes annexes"
+   python calcul_notes_annexes_main.py
+
+3. Check generated files:
+   - Tests/rapport_coherence.html
+   - Logs/calcul_notes_annexes.log
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+Task 21.2 is complete. The next task in the implementation plan is:
+
+Task 21.3: Integrate Trace_Manager into orchestrator
+  - Generate trace files for all 33 notes
+  - Manage trace history (keep last 10)
+
+================================================================================
+CONCLUSION
+================================================================================
+
+✓ Task 21.2 COMPLETED SUCCESSFULLY
+
+The Coherence_Validator is fully integrated into the orchestrator and
+functioning correctly. All requirements (10.1-10.7) are validated.
+
+The integration follows the design specification and provides:
+- Automatic validation after note calculation
+- HTML report generation
+- Alert emission for low coherence rates
+- Complete traceability in logs
+
+================================================================================

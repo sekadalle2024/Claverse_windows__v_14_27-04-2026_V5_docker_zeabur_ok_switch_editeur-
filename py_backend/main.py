@@ -173,6 +173,15 @@ try:
     logger.info("✅ Export Synthèse CAC FINAL router loaded successfully")
 except ImportError as e:
     logger.warning(f"⚠️ Export Synthèse CAC FINAL not available: {e}")
+
+# Import and include the Notes Annexes SYSCOHADA router
+try:
+    from api_notes_annexes import router as notes_annexes_router
+    app.include_router(notes_annexes_router)
+    logger.info("✅ Notes Annexes SYSCOHADA router loaded successfully")
+except ImportError as e:
+    logger.warning(f"⚠️ Notes Annexes SYSCOHADA not available: {e}")
+
 # --- Endpoints de base ---
 @app.get("/health")
 async def health_check():

@@ -1,162 +1,75 @@
 {
   "note": "4",
   "titre": "",
-  "date_generation": "2026-04-25T14:18:37.841688",
-  "fichier_balance": "py_backend/P000 -BALANCE DEMO N_N-1_N-2.xls",
+  "date_generation": "2026-04-27T17:45:17.779421",
+  "fichier_balance": "H:\\ClaraVerse\\py_backend\\Doc calcul notes annexes\\Tests\\..\\..\\P000 -BALANCE DEMO N_N-1_N-2.xls",
   "hash_md5_balance": "cf926871c313939e8e562108090d2f57",
   "lignes": [
     {
       "libelle": "Marchandises",
       "montant": 0.0,
-      "comptes_sources": [
-        {
-          "compte": "31",
-          "type": "brut",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        },
-        {
-          "compte": "391",
-          "type": "amortissement",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        }
-      ],
-      "timestamp": "2026-04-25T14:18:37.851953"
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.779986"
     },
     {
       "libelle": "Matières premières et fournitures liées",
       "montant": 0.0,
-      "comptes_sources": [
-        {
-          "compte": "32",
-          "type": "brut",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        },
-        {
-          "compte": "392",
-          "type": "amortissement",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        }
-      ],
-      "timestamp": "2026-04-25T14:18:37.859451"
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.780220"
     },
     {
       "libelle": "Autres approvisionnements",
       "montant": 0.0,
-      "comptes_sources": [
-        {
-          "compte": "33",
-          "type": "brut",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        },
-        {
-          "compte": "393",
-          "type": "amortissement",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        }
-      ],
-      "timestamp": "2026-04-25T14:18:37.868579"
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.780416"
     },
     {
       "libelle": "Produits en cours",
       "montant": 0.0,
-      "comptes_sources": [
-        {
-          "compte": "34",
-          "type": "brut",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        },
-        {
-          "compte": "394",
-          "type": "amortissement",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        }
-      ],
-      "timestamp": "2026-04-25T14:18:37.880982"
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.780568"
     },
     {
       "libelle": "Services en cours",
       "montant": 0.0,
-      "comptes_sources": [
-        {
-          "compte": "35",
-          "type": "brut",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        },
-        {
-          "compte": "395",
-          "type": "amortissement",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        }
-      ],
-      "timestamp": "2026-04-25T14:18:37.936438"
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.780790"
     },
     {
       "libelle": "Produits finis",
       "montant": 0.0,
-      "comptes_sources": [
-        {
-          "compte": "36",
-          "type": "brut",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        },
-        {
-          "compte": "396",
-          "type": "amortissement",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        }
-      ],
-      "timestamp": "2026-04-25T14:18:37.972247"
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.780991"
     },
     {
       "libelle": "Produits intermédiaires et résiduels",
       "montant": 0.0,
-      "comptes_sources": [
-        {
-          "compte": "37",
-          "type": "brut",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        },
-        {
-          "compte": "397",
-          "type": "amortissement",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        }
-      ],
-      "timestamp": "2026-04-25T14:18:37.993574"
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.781137"
     },
     {
       "libelle": "Stocks en cours de route, en consignation ou en dépôt",
       "montant": 0.0,
-      "comptes_sources": [
-        {
-          "compte": "38",
-          "type": "brut",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        },
-        {
-          "compte": "398",
-          "type": "amortissement",
-          "solde_debit_n": 0.0,
-          "solde_credit_n": 0.0
-        }
-      ],
-      "timestamp": "2026-04-25T14:18:38.005883"
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.781272"
+    },
+    {
+      "libelle": "TOTAL STOCKS",
+      "montant": 0.0,
+      "comptes_sources": [],
+      "timestamp": "2026-04-27T17:45:17.781405"
     }
   ],
-  "total": {}
+  "total": {
+    "brut_ouverture": 0.0,
+    "augmentations": 0.0,
+    "diminutions": 0.0,
+    "brut_cloture": 0.0,
+    "amort_ouverture": 0.0,
+    "dotations": 0.0,
+    "reprises": 0.0,
+    "amort_cloture": 0.0,
+    "vnc_ouverture": 0.0,
+    "vnc_cloture": 0.0
+  }
 }

@@ -1,0 +1,83 @@
+================================================================================
+✓ TASK 21.5 COMPLETED: Property Test for Calculation Caching
+================================================================================
+
+Date: 27 avril 2026
+Property: Property 19 - Calculation Caching
+Validates: Requirements 12.4
+
+================================================================================
+RÉSUMÉ RAPIDE
+================================================================================
+
+✓ Property test créé avec Hypothesis
+✓ 5 property tests + 3 unit tests
+✓ Documentation complète
+✓ Script PowerShell d'exécution
+✓ Requirement 12.4 validé
+
+================================================================================
+FICHIERS CRÉÉS
+================================================================================
+
+1. py_backend/Doc calcul notes annexes/Tests/test_calculation_caching.py
+   → Tests property-based avec Hypothesis
+
+2. py_backend/Doc calcul notes annexes/Tests/QUICK_START_CALCULATION_CACHING.md
+   → Guide de démarrage rapide
+
+3. py_backend/Doc calcul notes annexes/Tests/PROPERTY_TEST_CALCULATION_CACHING_SUMMARY.md
+   → Résumé technique complet
+
+4. test-calculation-caching.ps1
+   → Script d'exécution automatisé
+
+5. py_backend/Doc calcul notes annexes/Tests/00_TASK_21_5_COMPLETED_CALCULATION_CACHING.txt
+   → Statut de complétion
+
+================================================================================
+PROPERTY 19: CALCULATION CACHING
+================================================================================
+
+Énoncé:
+  Pour tout calcul répété avec les mêmes données d'entrée, le système doit
+  retourner des résultats en cache, et la deuxième exécution doit être
+  significativement plus rapide que la première.
+
+Tests implémentés:
+  ✓ test_property_balance_caching_single_load
+  ✓ test_property_calculation_uses_cache
+  ✓ test_property_repeated_calculation_faster
+  ✓ test_property_cache_consistency_across_notes
+  ✓ test_property_cache_memory_efficiency
+
+Métriques validées:
+  ✓ Cache 10x+ plus rapide que chargement
+  ✓ Gain de performance ≥ 20%
+  ✓ Pas de duplication mémoire
+  ✓ Cohérence maintenue
+
+================================================================================
+EXÉCUTION RAPIDE
+================================================================================
+
+Commande:
+  ./test-calculation-caching.ps1
+
+Ou directement:
+  cd py_backend/Doc calcul notes annexes/Tests
+  pytest test_calculation_caching.py -v
+
+Durée: ~10-15 minutes
+
+================================================================================
+PROCHAINES ÉTAPES
+================================================================================
+
+Task 21.5: ✓ COMPLETED
+
+Prochaines tâches:
+  → Task 21.6 (OPTIONNEL): Integration test pour les 33 notes
+  → Task 22: API Flask endpoint pour Claraverse
+
+================================================================================

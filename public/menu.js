@@ -137,6 +137,7 @@
           id: "etats-financiers", title: "États Financiers SYSCOHADA", icon: "📈",
           items: [
             { text: "📊 Calculer États Financiers", action: () => this.executeEtatsFinanciers(), shortcut: "Ctrl+F" },
+            { text: "📋 Calculer Notes Annexes", action: () => this.executeNotesAnnexes(), shortcut: "Ctrl+N" },
             { text: "📥 Importer Balance Excel", action: () => this.importBalanceExcel() },
             { text: "─────────────────────", action: null },
             { text: "📋 Afficher Bilan", action: () => this.showBilan() },
@@ -404,6 +405,7 @@
         if (e.ctrlKey && e.key === "l" && this.targetTable) { e.preventDefault(); this.executeLeadBalance(); }
         if (e.ctrlKey && e.shiftKey && e.key === "L" && this.targetTable) { e.preventDefault(); this.exportLeadBalanceToExcel(); }
         if (e.ctrlKey && e.key === "f" && this.targetTable) { e.preventDefault(); this.executeEtatsFinanciers(); }
+        if (e.ctrlKey && e.key === "n") { e.preventDefault(); this.executeNotesAnnexes(); }
         // Raccourcis arithmétiques Ctrl+1 à Ctrl+5
         if (e.ctrlKey && e.key === "1" && this.targetTable) { e.preventDefault(); this.executeValidation(); }
         if (e.ctrlKey && e.key === "2" && this.targetTable) { e.preventDefault(); this.executeMouvement(); }
@@ -7799,6 +7801,267 @@
       // Activer les accordéons (fonctionne pour les deux formats)
       this.setupEtatsFinanciersAccordions(container);
       console.log("✅ [États Financiers] Résultats affichés");
+    }
+
+    /**
+     * Calcule les 33 Notes Annexes SYSCOHADA à partir d'un fichier Balance Excel
+     * Ouvre un dialogue de sélection de fichier et envoie vers l'API backend
+     */
+    async executeNotesAnnexes() {
+      try {
+        this.showQuickNotification("📂 Sélectionnez votre fichier Balance Excel...");
+        console.log("📊 [Notes Annexes] Ouverture du dialogue de sélection");
+
+        // Ouvrir le dialogue de sélection de fichier
+        const file = await this.openFileDialogForLeadBalance();
+        if (!file) {
+          console.log("❌ [Notes Annexes] Sélection annulée");
+          return;
+        }
+
+        // Vérifier le format
+        const ext = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+        if (!['.xlsx', '.xls'].includes(ext)) {
+          this.showAlert(`⚠️ Format non supporté: ${ext}. Formats acceptés: .xlsx, .xls`);
+          return;
+        }
+
+        this.showQuickNotification(`📊 Calcul des 33 notes annexes en cours...\n⏱️ Cela peut prendre jusqu'à 30 secondes`);
+        console.log("📊 [Notes Annexes] Fichier sélectionné:", file.name);
+
+        // Créer FormData pour l'upload
+        const formData = new FormData();
+        formData.append('balance_file', file);
+
+        // Envoyer vers le backend
+        const response = await fetch((window.CLARA_BACKEND_URL || 'http://localhost:5000') + '/api/calculer_notes_annexes', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.detail || `Erreur HTTP ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("📊 [Notes Annexes] Résultat reçu:", result);
+
+        if (result.success) {
+          // Afficher les résultats
+          this.insertNotesAnnexesResults(result);
+          this.showQuickNotification(`✅ ${result.notes_calculees} notes annexes générées! (Cohérence: ${result.taux_coherence}%)`);
+          this.notifyTableStructureChange("notes_annexes_calculated", {
+            notes_calculees: result.notes_calculees,
+            taux_coherence: result.taux_coherence
+          });
+          this.syncWithDev();
+        } else {
+          throw new Error(result.detail || "Erreur lors du calcul des notes annexes");
+        }
+
+      } catch (error) {
+        console.error("❌ [Notes Annexes] Erreur:", error);
+        this.showAlert(`❌ Erreur Notes Annexes: ${error.message}`);
+      }
+    }
+
+    /**
+     * Insère les résultats des Notes Annexes en accordéon
+     */
+    insertNotesAnnexesResults(result) {
+      // Supprimer les anciens résultats
+      const existing = document.querySelector('.notes-annexes-results');
+      if (existing) existing.remove();
+
+      const container = document.createElement('div');
+      container.className = 'notes-annexes-results';
+      container.style.cssText = 'margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 12px; border: 2px solid #dee2e6;';
+
+      // Titre principal
+      const title = document.createElement('h2');
+      title.innerHTML = '📊 <strong>Notes Annexes SYSCOHADA Révisé</strong>';
+      title.style.cssText = 'margin: 0 0 20px 0; color: #2c3e50; font-size: 20px; text-align: center; padding-bottom: 10px; border-bottom: 2px solid #667eea;';
+      container.appendChild(title);
+
+      // Métadonnées
+      const metadata = document.createElement('div');
+      metadata.style.cssText = 'display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; font-size: 13px; color: #666;';
+      metadata.innerHTML = `
+        <span>📁 ${result.fichier_source}</span>
+        <span>⏱️ ${result.duree_calcul}s</span>
+        <span>✓ Cohérence: ${result.taux_coherence}%</span>
+        <span>📋 ${result.notes_calculees} notes</span>
+      `;
+      container.appendChild(metadata);
+
+      // Boutons de contrôle
+      const controls = document.createElement('div');
+      controls.style.cssText = 'display: flex; gap: 12px; margin-bottom: 20px; justify-content: center;';
+      controls.innerHTML = `
+        <button onclick="window.expandAllNotesAnnexes()" style="padding: 8px 16px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px;">📂 Tout Ouvrir</button>
+        <button onclick="window.collapseAllNotesAnnexes()" style="padding: 8px 16px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px;">📁 Tout Fermer</button>
+      `;
+      container.appendChild(controls);
+
+      // Créer les accordéons pour chaque note
+      const notesDiv = document.createElement('div');
+      notesDiv.className = 'notes-list';
+      
+      Object.entries(result.notes).forEach(([noteKey, noteData], index) => {
+        const statut = result.statuts[noteKey] || '✓ Succès';
+        const icon = this.getIconForNote(noteKey);
+        const titre = this.getTitreForNote(noteKey, noteData);
+        const isFirst = index === 0;
+
+        const noteSection = document.createElement('div');
+        noteSection.className = `notes-annexes-section ${isFirst ? 'active' : ''}`;
+        noteSection.setAttribute('data-note', noteKey);
+        noteSection.style.cssText = 'margin-bottom: 12px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white;';
+
+        // En-tête de la note
+        const header = document.createElement('div');
+        header.className = 'section-header-na';
+        header.style.cssText = `
+          display: flex; justify-content: space-between; align-items: center; padding: 14px 18px;
+          background: ${isFirst ? 'linear-gradient(135deg, #667eea, #764ba2)' : 'linear-gradient(135deg, #f5f7fa, #c3cfe2)'};
+          color: ${isFirst ? 'white' : '#2c3e50'}; cursor: pointer; font-weight: 600; font-size: 14px;
+        `;
+        header.innerHTML = `
+          <span>${icon} ${titre}</span>
+          <span class="statut" style="font-size: 12px; opacity: 0.9;">${statut}</span>
+          <span class="arrow" style="font-size: 20px; transition: transform 0.3s;">${isFirst ? '▼' : '▶'}</span>
+        `;
+        header.onclick = () => this.toggleNoteSection(noteKey);
+        noteSection.appendChild(header);
+
+        // Contenu de la note
+        const content = document.createElement('div');
+        content.className = `section-content-na ${isFirst ? 'active' : ''}`;
+        content.style.cssText = `
+          max-height: ${isFirst ? '5000px' : '0'}; overflow: hidden; transition: max-height 0.4s ease;
+          padding: ${isFirst ? '20px' : '0'}; border-top: ${isFirst ? '1px solid #e0e0e0' : 'none'};
+        `;
+        content.innerHTML = this.buildNoteTable(noteData);
+        noteSection.appendChild(content);
+
+        notesDiv.appendChild(noteSection);
+      });
+
+      container.appendChild(notesDiv);
+
+      // Insérer après la table ou à la fin du chat
+      if (this.targetTable && this.targetTable.parentNode) {
+        this.targetTable.parentNode.insertBefore(container, this.targetTable.nextSibling);
+      } else {
+        const chatContainer = document.querySelector('.prose, [class*="chat"], [class*="message"]');
+        if (chatContainer) chatContainer.appendChild(container);
+        else document.body.appendChild(container);
+      }
+
+      console.log("✅ [Notes Annexes] Résultats affichés");
+    }
+
+    /**
+     * Toggle une section de note
+     */
+    toggleNoteSection(noteKey) {
+      const section = document.querySelector(`[data-note="${noteKey}"]`);
+      if (!section) return;
+
+      const isActive = section.classList.contains('active');
+      section.classList.toggle('active');
+
+      const header = section.querySelector('.section-header-na');
+      const content = section.querySelector('.section-content-na');
+      const arrow = header.querySelector('.arrow');
+
+      if (isActive) {
+        // Fermer
+        content.style.maxHeight = '0';
+        content.style.padding = '0';
+        content.style.borderTop = 'none';
+        content.classList.remove('active');
+        arrow.textContent = '▶';
+        header.style.background = 'linear-gradient(135deg, #f5f7fa, #c3cfe2)';
+        header.style.color = '#2c3e50';
+      } else {
+        // Ouvrir
+        content.style.maxHeight = '5000px';
+        content.style.padding = '20px';
+        content.style.borderTop = '1px solid #e0e0e0';
+        content.classList.add('active');
+        arrow.textContent = '▼';
+        header.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+        header.style.color = 'white';
+      }
+    }
+
+    /**
+     * Construit le tableau HTML pour une note
+     */
+    buildNoteTable(noteData) {
+      if (!noteData.colonnes || !noteData.lignes) {
+        return '<p style="text-align: center; color: #999;">Aucune donnée disponible</p>';
+      }
+
+      const formatMontant = (val) => {
+        if (Math.abs(val) < 0.01) return '-';
+        return new Intl.NumberFormat('fr-FR').format(Math.round(val || 0));
+      };
+
+      let html = '<table style="width: 100%; border-collapse: collapse; font-size: 13px;"><thead><tr>';
+      
+      // En-têtes
+      noteData.colonnes.forEach(col => {
+        html += `<th style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 10px 14px; text-align: left; font-weight: 600; border: 1px solid rgba(255,255,255,0.2);">${col}</th>`;
+      });
+      html += '</tr></thead><tbody>';
+
+      // Lignes
+      noteData.lignes.forEach((ligne, idx) => {
+        const isTotal = ligne[0]?.toString().toLowerCase().includes('total');
+        const bgColor = isTotal ? 'linear-gradient(135deg, #f8f9fa, #e9ecef)' : (idx % 2 === 0 ? '#ffffff' : '#f8f9fa');
+        const fontWeight = isTotal ? '700' : '500';
+        const borderTop = isTotal ? '2px solid #667eea' : '1px solid #e0e0e0';
+        
+        html += `<tr style="background: ${bgColor}; border-top: ${borderTop};">`;
+        
+        ligne.forEach((cell, cellIdx) => {
+          const isNumeric = typeof cell === 'number';
+          const formattedCell = isNumeric ? formatMontant(cell) : cell;
+          const textAlign = isNumeric ? 'right' : 'left';
+          const fontFamily = isNumeric ? "'Courier New', monospace" : 'inherit';
+          
+          html += `<td style="padding: 10px 14px; border: 1px solid #e0e0e0; text-align: ${textAlign}; font-weight: ${fontWeight}; font-family: ${fontFamily}; color: ${isTotal ? '#2c3e50' : '#495057'};">${formattedCell}</td>`;
+        });
+        
+        html += '</tr>';
+      });
+
+      html += '</tbody></table>';
+      return html;
+    }
+
+    /**
+     * Retourne l'icône appropriée pour une note
+     */
+    getIconForNote(noteKey) {
+      if (noteKey.includes('3')) return '🏢'; // Immobilisations
+      if (noteKey.includes('4') || noteKey.includes('5')) return '📦'; // Stocks et créances
+      if (noteKey.includes('6') || noteKey.includes('7')) return '💰'; // Trésorerie
+      if (noteKey.includes('8') || noteKey.includes('9')) return '🏛️'; // Capitaux propres
+      if (noteKey.includes('10') || noteKey.includes('11')) return '📊'; // Provisions
+      if (noteKey.includes('12') || noteKey.includes('13')) return '💳'; // Dettes
+      return '📄'; // Autres
+    }
+
+    /**
+     * Retourne le titre pour une note
+     */
+    getTitreForNote(noteKey, noteData) {
+      const noteNum = noteKey.replace('Note_', 'Note ').replace('_', ' ');
+      return noteNum;
     }
 
     /**

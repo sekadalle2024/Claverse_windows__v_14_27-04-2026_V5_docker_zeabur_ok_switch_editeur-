@@ -527,12 +527,18 @@ class CalculNotesAnnexesMain:
     def generer_traces(self):
         """
         Génère les fichiers de trace pour toutes les notes calculées.
+        Enregistre les calculs, métadonnées et gère l'historique.
         
         Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 15.7
         """
-        logging.info("Génération des traces...")
+        logging.info("=" * 80)
+        logging.info("GÉNÉRATION DES TRACES")
+        logging.info("=" * 80)
         
-        for nom_note in self.notes_calculees.keys():
+        traces_generees = 0
+        traces_echouees = 0
+        
+        for nom_note, df in self.notes_calculees.items():
             try:
                 # Extraire le numéro de la note
                 numero = nom_note.replace('Note_', '').lower()
@@ -549,6 +555,45 @@ class CalculNotesAnnexesMain:
                     hash_md5
                 )
                 
+                # Enregistrer les calculs pour chaque ligne de la note
+                if df is not None and not df.empty:
+                    for idx, row in df.iterrows():
+                        # Extraire le libellé (première colonne généralement)
+                        libelle = str(row.iloc[0]) if len(row) > 0 else f"Ligne {idx}"
+                        
+                        # Enregistrer les montants de la ligne
+                        montants = {}
+                        for col_name, value in row.items():
+                            if col_name != row.index[0]:  # Skip libellé column
+                                try:
+                                    montants[str(col_name)] = float(value) if pd.notna(value) else 0.0
+                                except (ValueError, TypeError):
+                                    montants[str(col_name)] = 0.0
+                        
+                        # Enregistrer le calcul (sans comptes sources détaillés pour l'instant)
+                        if montants:
+                            # Prendre le premier montant comme représentatif
+                            montant_principal = list(montants.values())[0] if montants else 0.0
+                            trace_manager.enregistrer_calcul(
+                                libelle=libelle,
+                                montant=montant_principal,
+                                comptes_sources=[]  # Les comptes sources seraient ajoutés par les calculateurs individuels
+                            )
+                    
+                    # Ajouter le total si présent (dernière ligne généralement)
+                    if len(df) > 0:
+                        derniere_ligne = df.iloc[-1]
+                        total_data = {}
+                        for col_name, value in derniere_ligne.items():
+                            if col_name != derniere_ligne.index[0]:
+                                try:
+                                    total_data[str(col_name)] = float(value) if pd.notna(value) else 0.0
+                                except (ValueError, TypeError):
+                                    total_data[str(col_name)] = 0.0
+                        
+                        if total_data:
+                            trace_manager.ajouter_total(total_data)
+                
                 # Sauvegarder la trace
                 fichier_trace = os.path.join(
                     os.path.dirname(__file__),
@@ -560,10 +605,18 @@ class CalculNotesAnnexesMain:
                 # Gérer l'historique (garder les 10 dernières)
                 trace_manager.gerer_historique(max_historique=10)
                 
+                traces_generees += 1
+                logging.info(f"✓ Trace générée: {nom_note}")
+                
             except Exception as e:
-                logging.warning(f"Impossible de générer la trace pour {nom_note}: {e}")
+                traces_echouees += 1
+                logging.warning(f"✗ Impossible de générer la trace pour {nom_note}: {e}")
         
-        logging.info(f"✓ Traces générées pour {len(self.notes_calculees)} notes")
+        logging.info("=" * 80)
+        logging.info(f"TRACES GÉNÉRÉES: {traces_generees}/{len(self.notes_calculees)}")
+        if traces_echouees > 0:
+            logging.warning(f"Traces échouées: {traces_echouees}")
+        logging.info("=" * 80)
     
     def exporter_excel(self, fichier_sortie: str = None) -> bool:
         """

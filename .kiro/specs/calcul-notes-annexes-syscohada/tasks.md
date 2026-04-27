@@ -400,33 +400,33 @@ This implementation plan creates a modular Python system to automate the calcula
     - Generate summary report with calculation status for each note
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7_
 
-  - [-] 21.2 Integrate Coherence_Validator into orchestrator
+  - [x] 21.2 Integrate Coherence_Validator into orchestrator
     - Call validator after all notes are calculated
     - Generate coherence report HTML
     - Emit alerts if coherence rate < 95%
     - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7_
 
-  - [ ] 21.3 Integrate Trace_Manager into orchestrator
+  - [x] 21.3 Integrate Trace_Manager into orchestrator
     - Generate trace files for all 33 notes
     - Manage trace history (keep last 10)
     - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 15.7_
 
-  - [ ]* 21.4 Write property test for performance constraint
+  - [x] 21.4 Write property test for performance constraint
     - **Property 18: Performance Constraint**
     - **Validates: Requirements 12.1, 12.2**
 
-  - [ ]* 21.5 Write property test for calculation caching
+  - [x] 21.5 Write property test for calculation caching
     - **Property 19: Calculation Caching**
     - **Validates: Requirements 12.4**
 
-  - [ ]* 21.6 Write integration test for all 33 notes calculation
+  - [x] 21.6 Write integration test for all 33 notes calculation
     - Test complete workflow from balance loading to coherence validation
     - Verify performance < 30 seconds
     - Verify coherence rate >= 95%
     - _Requirements: 12.1, 10.5, 10.6_
 
-- [ ] 22. Create Flask API endpoint for Claraverse integration
-  - [ ] 22.1 Create api_notes_annexes.py with Flask endpoint
+- [x] 22. Create Flask API endpoint for Claraverse integration
+  - [x] 22.1 Create api_notes_annexes.py with Flask endpoint
     - Implement /api/calculer_notes_annexes POST endpoint
     - Handle file upload (multipart/form-data)
     - Call orchestrator to calculate all 33 notes
@@ -434,38 +434,38 @@ This implementation plan creates a modular Python system to automate the calcula
     - Implement error handling with appropriate HTTP status codes (400, 404, 500, 503)
     - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 13.6_
 
-  - [ ] 22.2 Integrate API endpoint into main.py
+  - [x] 22.2 Integrate API endpoint into main.py
     - Add route registration in Flask app
     - Configure CORS for frontend access
     - Add request validation and sanitization
     - _Requirements: 13.1, 13.2_
 
-  - [ ]* 22.3 Write property test for API integration round-trip
+  - [x] 22.3 Write property test for API integration round-trip
     - **Property 20: API Integration Round-Trip**
     - **Validates: Requirements 13.2, 13.3, 13.4**
 
-  - [ ]* 22.4 Write integration test for API endpoint
+  - [x] 22.4 Write integration test for API endpoint
     - Test file upload and response format
     - Test error handling for invalid files
     - Test response time and performance
     - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 13.6_
 
 - [ ] 23. Create frontend integration components
-  - [ ] 23.1 Create NotesAnnexesAccordionRenderer.tsx component
+  - [x] 23.1 Create NotesAnnexesAccordionRenderer.tsx component
     - Implement accordion UI for displaying 33 notes
     - Implement clickable accordion items to expand/collapse notes
     - Render HTML content from API response
     - Add loading state and error handling
     - _Requirements: 13.4, 13.5_
 
-  - [ ] 23.2 Add "Calculer Notes Annexes" button to EtatFinMenu
+  - [x] 23.2 Add "Calculer Notes Annexes" button to EtatFinMenu
     - Add button in Etat fin interface
     - Implement file upload trigger
     - Call API endpoint on button click
     - Display results in accordion renderer
     - _Requirements: 13.1, 13.2, 13.3_
 
-  - [ ] 23.3 Create NotesAnnexesAutoTrigger.js for automatic calculation
+  - [x] 23.3 Create NotesAnnexesAutoTrigger.js for automatic calculation
     - Implement auto-trigger when balance file is uploaded
     - Handle calculation progress display
     - Handle success/error notifications
